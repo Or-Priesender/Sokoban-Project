@@ -54,4 +54,11 @@ public class MyModel extends Observable implements Model {
 		
 	}
 
+
+	@Override
+	public void move(String direction) {
+		
+		
+	}
+
 }

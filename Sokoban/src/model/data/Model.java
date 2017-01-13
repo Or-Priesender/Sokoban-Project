@@ -8,5 +8,6 @@ public interface Model {
 	public boolean isFinished();
 	public SokobanPolicy getPolicy();
 	public void setPolicy(SokobanPolicy p);
+	public void move(String direction);
 	
 }
