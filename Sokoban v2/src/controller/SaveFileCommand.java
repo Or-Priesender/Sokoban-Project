@@ -7,21 +7,22 @@ import java.util.HashMap;
 import model.data.Level;
 import model.data.LevelSaver;
 import model.data.LevelSaverCreator;
+import model.data.Model;
 import model.data.ObjectLevelSaverCreator;
 import model.data.TextLevelSaverCreator;
 import model.data.XMLLevelSaverCreator;
 
-public class SaveFileCommand implements Command {
+public class SaveFileCommand extends Command {
 
 	HashMap<String,LevelSaverCreator> map;
 	FileOutputStream out;
 	LevelSaver saver;
-	Level toSave;
 	
-	public SaveFileCommand(String filename,Level toSave) throws FileNotFoundException
+	Model model;
+	
+	public SaveFileCommand(Model model) throws FileNotFoundException
 	{
-		this.toSave=toSave;
-		out = new FileOutputStream(filename);
+		
 		map = new HashMap<String,LevelSaverCreator>();
 		
 		//configuration of the map, can add more in the future
@@ -29,18 +30,22 @@ public class SaveFileCommand implements Command {
 		map.put("xml", new XMLLevelSaverCreator());
 		map.put("txt", new TextLevelSaverCreator());
 		
-		LevelSaverCreator c = map.get(filename.substring(filename.length()-3));
-		if(c!=null)
-			saver = c.create();
+		
 		
 		
 	}
 	
 	@Override
 	public void execute() throws IOException {
-		saver.saveLevel(toSave, out);
 		
-
+		String filename = params.get(0);
+		out = new FileOutputStream(filename);
+		LevelSaverCreator c = map.get(filename.substring(filename.length()-3));
+		
+		if(c!=null){
+			saver = c.create();
+			model.saveLevel(out, saver);
+		}
 	}
 
 }

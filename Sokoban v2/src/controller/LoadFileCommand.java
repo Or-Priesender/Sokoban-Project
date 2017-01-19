@@ -8,46 +8,56 @@ import java.util.HashMap;
 import model.data.Level;
 import model.data.LevelLoader;
 import model.data.LevelLoaderCreator;
+import model.data.Model;
 import model.data.ObjectLevelLoaderCreator;
 import model.data.TextLevelLoaderCreator;
 import model.data.XMLLevelLoaderCreator;
 
-public class LoadFileCommand implements Command {
+public class LoadFileCommand extends Command {
+	
 	HashMap<String,LevelLoaderCreator> map;
+	Model model;
 	LevelLoader loader;
 	FileInputStream in;
-	Level lvl;
+	
 	
 
 	
 	//loads to the empty level from the given path, must activate getLevel after to get the loaded level!
-	public LoadFileCommand(String filename) throws FileNotFoundException 
+	public LoadFileCommand(Model model) throws FileNotFoundException 
 	{
-		map = new HashMap<String,LevelLoaderCreator>();
-		in = new FileInputStream(filename);
 		
+		map = new HashMap<String,LevelLoaderCreator>();
+		
+		this.model = model;
 		//configures the needed values to the map
 		map.put("obj", new ObjectLevelLoaderCreator());
 		map.put("xml", new XMLLevelLoaderCreator());
 		map.put("txt",new TextLevelLoaderCreator());
 		
 		//loader creator  gets his right value according to the file ending
-		LevelLoaderCreator c = map.get(filename.substring(filename.length()-3));
-		if (c!=null)
-			loader = c.create();
-		lvl = new Level();
+		
+		
 		
 	}
 	@Override
 	public void execute() {
-		try{
-		lvl = loader.loadLevel(in);
 		
+		
+		try {
+			
+			String filename = params.get(0);
+			in = new FileInputStream(filename);
+			LevelLoaderCreator c = map.get(filename.substring(filename.length()-3));
+			if (c!=null){
+				loader = c.create();
+				model.loadLevel(in, loader);
+			}
+		} catch (ClassNotFoundException | IOException e) {
+			
+			e.printStackTrace();
 		}
-		catch(ClassNotFoundException | IOException p)
-		{
-			p.printStackTrace();
-		}
+		
 		
 	}
 	public HashMap<String, LevelLoaderCreator> getMap() {
@@ -68,11 +78,6 @@ public class LoadFileCommand implements Command {
 	public void setIn(FileInputStream in) {
 		this.in = in;
 	}
-	public Level getLvl() {
-		return lvl;
-	}
-	public void setLvl(Level lvl) {
-		this.lvl = lvl;
-	}
+	
 
 }

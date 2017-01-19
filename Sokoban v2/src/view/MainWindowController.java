@@ -17,25 +17,13 @@ public class MainWindowController implements Initializable{
 	
 	@FXML
 	LevelDisplayerGUI levelDisplayer;
-	
-	char[][] levelData = {
-			{'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'},
-		   	{' ',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#','#','#'},
-			{'#',' ','#','#',' ',' ',' ','#','#','#','#','#','#','#','#','#'},
-			{'#',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#','#','#'},
-			{'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'},
-			{'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'},
-		   	{' ',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#','#','#'},
-			{'#',' ','#','#',' ',' ',' ','#','#','#','#','#','#','#','#','#'},
-			{'#',' ',' ',' ',' ',' ',' ','#','#','#','#','#','#','#','#','#'},
-			{'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'}
 			 
-	};
+	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		levelDisplayer.setLevelData(levelData);
+		
 		levelDisplayer.addEventFilter(MouseEvent.MOUSE_CLICKED, (e)->levelDisplayer.requestFocus());
 		levelDisplayer.setOnKeyPressed(new EventHandler<KeyEvent>(){
 			
@@ -46,6 +34,7 @@ public class MainWindowController implements Initializable{
 				
 				if(event.getCode()== KeyCode.UP)
 				{
+					
 					levelDisplayer.setCharacterPosition(r-1, c);
 				}
 				if(event.getCode()== KeyCode.DOWN)
@@ -79,6 +68,7 @@ public class MainWindowController implements Initializable{
 			if(chosen!=null)
 			{
 				System.out.println(chosen.getName());
+				
 			}
 	}
 

@@ -1,15 +1,21 @@
 package controller;
 
-public class ExitCommand implements Command {
-	
-	CommonInvoker c;
+import model.data.Model;
+import view.View;
 
-	public ExitCommand(CommonInvoker c) {
-		this.c = c;
+public class ExitCommand extends Command {
+	
+	Model model;
+	View view;
+	
+	public ExitCommand(Model model,View view) {
+		
 	}
 	@Override
 	public void execute() {
-		c.execute();
+		
+		
+		
 
 	}
 

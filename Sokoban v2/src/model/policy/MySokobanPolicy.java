@@ -16,6 +16,7 @@ public class MySokobanPolicy implements SokobanPolicy {
 	
 	@Override//this function checks if it is possible to move to the desired location
 	public boolean Possible(Level lvl, String direction) {
+	if (lvl != null){
 	Point	p=lvl.getPlayerPos();
 	LevelObject[][] map = lvl.getMap();
 		//player wants to move up
@@ -189,6 +190,7 @@ public class MySokobanPolicy implements SokobanPolicy {
 				return true;
 			}
 		}
+	}
 		 return false;
 	}
 

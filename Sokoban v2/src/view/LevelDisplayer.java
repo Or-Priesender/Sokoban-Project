@@ -19,9 +19,12 @@ public class LevelDisplayer implements Displayable {
 	@Override
 	public void display() {
 		
-		
-		
 
+	}
+	@Override
+	public void setLevel(Level lvl) {
+		this.myLvl = lvl;
+		
 	}
 
 }

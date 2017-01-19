@@ -1,11 +1,24 @@
 package controller;
 
+
 import java.io.IOException;
+import java.util.List;
 
 import model.data.Level;
 
-public interface Command {
+public abstract class Command {
 	
-	public void execute() throws IOException;
+	protected List<String> params;
+	
+	public void setParams(List<String> params)
+	{
+		this.params = params;
+	}
+	
+	public abstract void execute() throws IOException;
+	
+	
+	
+	
 
 }

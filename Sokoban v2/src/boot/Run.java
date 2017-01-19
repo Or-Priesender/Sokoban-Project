@@ -8,10 +8,17 @@ package boot;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import controller.CLI;
+import controller.LoadFileCommand;
 import controller.SokobanController;
+import controller.server.MyServer;
+import javafx.stage.Stage;
+import model.data.Level;
 import model.data.MyModel;
 import model.policy.MySokobanPolicy;
+import view.CLI;
+import view.CharLevelDisplayer;
+import view.LevelDisplayerGUI;
+import view.Main;
 import view.MyView;
 
 public class Run {
@@ -25,12 +32,34 @@ public class Run {
 			 * the CLI is currently familiar with up to 2 word commands.
 			 * level only handles the map, in the future : add other data members in txt loader and saver, and in move commands.	
 			 */
-		
-			MyView view = new MyView();
+			
+			
+			 
+			CLI view = new CLI();
 			MyModel model = new MyModel();
 			SokobanController c = new SokobanController(view,model);
 			view.addObserver(c);
 			model.addObserver(c);
+			view.start(System.in, System.out);
+			
+			
+			
+	}
+}
+			/*
+			
+			if(args.length < 2)
+				System.out.println("Running without server");
+			else{
+				if(args[1].compareToIgnoreCase("-server")==0){
+					MyServer server = new MyServer(Integer.parseInt(args[2]));
+					server.addObserver(c);
+					server.start();//new Thread ! 
+					//remember to stop it
+					
+				}
+				*/
+				
 			
 		/*
 
@@ -48,6 +77,5 @@ public class Run {
 		} 
 	*/	
 	
-	}
-
-}
+	
+	

@@ -1,44 +1,57 @@
 package controller;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.Observable;
+import java.util.Observer;
 import java.util.Scanner;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.TimeUnit;
 
+import controller.server.MyServer;
 import model.data.Model;
 import view.CharLevelDisplayer;
 import view.View;
 
-public class SokobanController implements Controller {
+public class SokobanController implements Observer {
 	
 	View view;
 	Model model;
+	
 	Controller controller;
-	Command cmd;
-	boolean keepGoing;
-	BlockingQueue<Command> q;
-	HashMap<String,Command> modelMap;
-	HashMap<String,Command> viewMap;
+	MyServer server;
+	Map<String,Command> commands;
+	
 	
 	//controller has dependency on both view and model
 	public SokobanController(View view,Model model) {
 		
 		this.view=view;
 		this.model=model;
-		keepGoing=true;
-		modelMap = new HashMap<String,Command>();
-		viewMap = new HashMap<String,Command>();
+		controller = new Controller();
 		
-		//maybe the commands will get the model in the constructor? and if the command requires, get the second word of the request?
+		commands = new HashMap<String,Command>();
+		initCommands();
+		//starts the controller in a new thread ! 
+		controller.start();
+		
 		
 	}
 	@Override
 	public void update(Observable o, Object arg){
 		
+		LinkedList<String> params = (LinkedList<String>) arg;
+		String commandKey = params.removeFirst();
+		Command c = commands.get(commandKey);
 		
-		
-		
+		if(c!=null){
+		c.setParams(params);		
+		controller.insertCommand(c);
+		}
 	}
 
 	public View getView() {
@@ -56,39 +69,21 @@ public class SokobanController implements Controller {
 	public void setModel(Model model) {
 		this.model = model;
 	}
-	//this controller always runs in a new thread
-	@Override
-	public void start() {
-		Thread t = new Thread(new Runnable(){
-
-			@Override
-			public void run() {
-				while(keepGoing)
-				{
-					try {
-						Command cmd = q.take();
-						cmd.execute();
-					} catch (InterruptedException | IOException e) {
-					
-						e.printStackTrace();
-					}
-				}
-				
-			}
-			
-		});
-		t.start();
+	
+	protected void initCommands(){
+		
+		try {
+	commands.put("move", new MoveCommand(model));
+	commands.put("display", new DisplayLevelCommand(model,view));
+	commands.put("load", new LoadFileCommand(model));
+	commands.put("save", new SaveFileCommand(model));
+	commands.put("exit", new ExitCommand(model,view));
+	
+	} catch (FileNotFoundException e) {
+		
+		e.printStackTrace();
 	}
-	@Override
-	public void stop() {
-		
-		keepGoing = false;
-		
-	}
-	@Override
-	public void insertCommand(Command c) {
-		q.add(c);
-		
+	
 	}
 
 }

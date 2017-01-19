@@ -1,131 +1,69 @@
-package controller;
+package view;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Observable;
 import java.util.Scanner;
-
+import controller.Command;
+import controller.DisplayLevelCommand;
+import controller.ExitCommand;
+import controller.LoadFileCommand;
+import controller.SaveFileCommand;
 import model.data.Level;
+import model.data.LevelObject;
 import model.policy.SokobanPolicy;
-import view.CharLevelDisplayer;
 
-public class CLI extends CommonInvoker implements Command {
+public class CLI extends Observable implements View {
+
 	
-	Command command;
-	Scanner scan;
-	String[] args;
-	Level current;
-	SokobanPolicy p;
 	
-	public CLI(SokobanPolicy p)
+	
+	
+	
+	public void start(InputStream in,OutputStream out)
 	{
+		Scanner scan = new Scanner(in);
+		PrintStream writer = new PrintStream(out);
 		
-		args = new String[5];
-		this.p = p;
-		current = null;
-	}
-	
-	public void execute()
-	{
-		//in the future : do whatever you need to do before exiting, right now its nothing
-		System.exit(0);
-	}
-	
-	public void userInterface() throws IOException
-	{
+		Thread t = new Thread(new Runnable() {
+			
+			public void run() {
+				while(true)
+				{
+					writer.print("Enter a command :");
+					String line = scan.nextLine();
+					String[] arr = line.split(" ");
+					List<String> params = new LinkedList<String>();
+					for(String s : arr)
+						params.add(s);
+					setChanged();
+					notifyObservers(params);
+					if(line.equals("exit"))
+						break;
+				}
+				
+			}
+		});
+		t.start();
 		
-		while(true)
-		{
-			int i=0;
-			System.out.print("Enter a command :");
-			BufferedReader b= new BufferedReader(new InputStreamReader(System.in));
-			String line = b.readLine();
-			scan = new Scanner(line);
 			
-			while(scan.hasNext())
-			{
-				args[i] = scan.next();
-				i++;
-				
-				
-			}
 			
-			if(args[0].compareToIgnoreCase("move")==0)
-			{
-				if(current!=null){
-				if(args[1].compareToIgnoreCase("right")==0)
-				{
-					command = new MoveRightCommand(current,p);
-				}
-				else if(args[1].compareToIgnoreCase("left")==0)
-				{
-					command = new MoveLeftCommand(current,p);
-				}
-				else if(args[1].compareToIgnoreCase("up")==0)
-				{
-					command = new MoveUpCommand(current,p);
-				}
-				else if(args[1].compareToIgnoreCase("down")==0)
-				{
-					command = new MoveDownCommand(current,p);
-				}
-				}
-				/*
-				if(current != null){
-					command = new MoveCommand(args[1],current,p);
-					command.execute();
-					command = new DisplayLevelCommand(new CharLevelDisplayer(current));
-					command.execute();
-					
-				}	
-				*/
-				
-				else System.out.println("Level is empty");
-				
-			}
-			else if(args[0].compareToIgnoreCase("load")==0)
-			{
-				if(current!=null)
-				{
-					command = new SaveFileCommand("defaultSaver.obj", current);
-					current = null;
-				}
-				command = new LoadFileCommand(args[1], current);
-				command.execute();
-				current = ((LoadFileCommand)command).getLvl();  //is down cast necessary? //
-				System.out.println("Level Loaded.");
-			}
-			else if(args[0].compareToIgnoreCase("display")==0)
-			{
-				if(current == null)
-					System.out.println("Nothing to display");
-				else 
-				{
-					command = new DisplayLevelCommand(new CharLevelDisplayer(current));
-					command.execute();
-				}
-			}
-			else if(args[0].compareToIgnoreCase("save")==0)
-			{
-				if(current == null)
-					System.out.println("Nothing to save");
-				else
-				{
-					command = new SaveFileCommand(args[1], current);
-					command.execute();
-					System.out.println("Level saved.");
-				}
-			}
-			else if(args[0].compareToIgnoreCase("exit")==0)
-			{
-				command = new ExitCommand(this);
-				System.out.println("Exiting...");
-				
-				command.execute();
-			}
-			args = new String[args.length];
-		}
+	}
+
+	@Override
+	public void display(LevelObject[][] levelData) {
+		
+		//maybe change level displayer to get leveldata to his constructor ? 
+		//because he doesnt need to know all the level ! 
+		
 	}
 	
 

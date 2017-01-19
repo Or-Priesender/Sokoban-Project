@@ -1,17 +1,29 @@
 package controller;
 
+import model.data.Model;
+import view.Displayable;
 import view.LevelDisplayer;
+import view.LevelDisplayerGUI;
+import view.View;
 
-public class DisplayLevelCommand implements Command {
+public class DisplayLevelCommand extends Command {
 
-	LevelDisplayer disp;
 	
-	public DisplayLevelCommand(LevelDisplayer disp) {
-		this.disp=disp;
+	private Model model;
+	private View view;
+	
+	public DisplayLevelCommand(Model model, View view) {
+		
+		this.model = model;
+		this.view = view;
+		
 	}
 	@Override
 	public void execute() {
-		disp.display();
+		
+		if(model.getLevelData()!=null)
+			view.display(model.getLevelData());
+		
 		
 	}
 
