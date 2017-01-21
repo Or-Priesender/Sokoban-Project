@@ -1,4 +1,5 @@
 package controller;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -45,8 +46,8 @@ public class LoadFileCommand extends Command {
 		
 		
 		try {
-			
-			String filename = params.get(0);
+			String filename = params.removeFirst();	
+	
 			in = new FileInputStream(filename);
 			LevelLoaderCreator c = map.get(filename.substring(filename.length()-3));
 			if (c!=null){

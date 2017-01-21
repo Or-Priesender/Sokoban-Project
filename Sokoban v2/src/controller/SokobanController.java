@@ -47,7 +47,6 @@ public class SokobanController implements Observer {
 		LinkedList<String> params = (LinkedList<String>) arg;
 		String commandKey = params.removeFirst();
 		Command c = commands.get(commandKey);
-		
 		if(c!=null){
 		c.setParams(params);		
 		controller.insertCommand(c);

@@ -2,15 +2,16 @@ package controller;
 
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 import model.data.Level;
 
 public abstract class Command {
 	
-	protected List<String> params;
+	protected LinkedList<String> params;
 	
-	public void setParams(List<String> params)
+	public void setParams(LinkedList<String> params)
 	{
 		this.params = params;
 	}

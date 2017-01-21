@@ -10,18 +10,20 @@ import model.data.Wall;
 
 public class CharLevelDisplayer extends LevelDisplayer {
 
-	public CharLevelDisplayer(Level myLvl)
+	public CharLevelDisplayer(LevelObject[][] levelData)
 	{
-		super(myLvl);
+		super(levelData);
 	}
 	@Override
 	public void display() {
 		
-		for(int i=0;i<myLvl.getHeight();i++)
+		System.out.println();
+	
+		for(int i=0;i<levelData.length;i++)
 		{
-			for(int j=0;j<myLvl.getWidth();j++) 
+			for(int j=0;j<levelData[i].length;j++) 
 			{
-				System.out.print(LevelObjectToChar(myLvl.getMap()[i][j]));
+				System.out.print(LevelObjectToChar(levelData[i][j]));
 				
 			}
 			System.out.println();

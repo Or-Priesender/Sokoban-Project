@@ -21,17 +21,16 @@ import model.data.Level;
 import model.data.LevelObject;
 import model.policy.SokobanPolicy;
 
-public class CLI extends Observable implements View {
+public class CLI extends Observable implements View{
 
 	
+	Displayable displayable;
 	
-	
-	
-	
-	public void start(InputStream in,OutputStream out)
+	public void startCustomIO(InputStream in,OutputStream out)
 	{
 		Scanner scan = new Scanner(in);
 		PrintStream writer = new PrintStream(out);
+		//TODO : FIX SAVE !!
 		
 		Thread t = new Thread(new Runnable() {
 			
@@ -61,8 +60,15 @@ public class CLI extends Observable implements View {
 	@Override
 	public void display(LevelObject[][] levelData) {
 		
-		//maybe change level displayer to get leveldata to his constructor ? 
-		//because he doesnt need to know all the level ! 
+		displayable = new CharLevelDisplayer(levelData); 
+		displayable.display();
+		
+	}
+
+	@Override
+	public void start() {
+		
+		startCustomIO(System.in, System.out);
 		
 	}
 	

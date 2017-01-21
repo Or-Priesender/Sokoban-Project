@@ -26,7 +26,7 @@ public class MoveCommand extends Command {
 	@Override
 	public  void execute() {
 		
-		String direction = params.get(0);
+		String direction = params.removeFirst();
 		
 		if(direction !=null)
 			model.move(direction);

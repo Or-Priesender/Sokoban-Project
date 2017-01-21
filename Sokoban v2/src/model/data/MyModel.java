@@ -103,11 +103,12 @@ public class MyModel extends Observable implements Model {
 				lvl.movePlayer(player, current, target, dragged);
 			}
 			
-			this.setChanged();
-			LinkedList<String> params = new LinkedList<String>();
-			params.add("display");
-			notifyObservers(params);
+			
 		}
+		this.setChanged();
+		LinkedList<String> params = new LinkedList<String>();
+		params.add("display");
+		notifyObservers(params);
 	}
 
 
@@ -126,6 +127,7 @@ public class MyModel extends Observable implements Model {
 			saver.saveLevel(lvl, out);
 			this.setChanged();
 			LinkedList<String> params = new LinkedList<String>();
+			params.add("message");
 			params.add("saved");
 		}
 		

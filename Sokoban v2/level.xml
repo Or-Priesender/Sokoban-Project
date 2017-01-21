@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_111" class="java.beans.XMLDecoder">
+ <object class="model.data.Level" id="Level0">
+  <void property="boxCounter">
+   <int>1</int>
+  </void>
+  <void property="destinationCounter">
+   <int>1</int>
+  </void>
+  <void property="height">
+   <int>5</int>
+  </void>
+  <void property="map">
+   <array class="[Lmodel.data.LevelObject;" length="5">
+    <void index="0">
+     <array class="model.data.LevelObject" length="7">
+      <void index="0">
+       <object class="model.data.Wall"/>
+      </void>
+      <void index="1">
+       <object class="model.data.Wall" id="Wall0">
+        <void property="position">
+         <void property="x">
+          <int>1</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="2">
+       <object class="model.data.Wall" id="Wall1">
+        <void property="position">
+         <void property="x">
+          <int>2</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="3">
+       <object class="model.data.Wall" id="Wall2">
+        <void property="position">
+         <void property="x">
+          <int>3</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="4">
+       <object class="model.data.Wall" id="Wall3">
+        <void property="position">
+         <void property="x">
+          <int>4</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="5">
+       <object class="model.data.Wall" id="Wall4">
+        <void property="position">
+         <void property="x">
+          <int>5</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="6">
+       <object class="model.data.Wall" id="Wall5">
+        <void property="position">
+         <void property="x">
+          <int>6</int>
+         </void>
+        </void>
+       </object>
+      </void>
+     </array>
+    </void>
+    <void index="1">
+     <array class="model.data.LevelObject" length="7">
+      <void index="0">
+       <object class="model.data.Wall" id="Wall6">
+        <void property="position">
+         <void property="y">
+          <int>1</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="3">
+       <object class="model.data.Player" id="Player0">
+        <void property="position">
+         <void property="x">
+          <int>3</int>
+         </void>
+         <void property="y">
+          <int>1</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="6">
+       <object class="model.data.Wall" id="Wall7">
+        <void property="position">
+         <void property="x">
+          <int>6</int>
+         </void>
+         <void property="y">
+          <int>1</int>
+         </void>
+        </void>
+       </object>
+      </void>
+     </array>
+    </void>
+    <void index="2">
+     <array class="model.data.LevelObject" length="7">
+      <void index="0">
+       <object class="model.data.Wall" id="Wall8">
+        <void property="position">
+         <void property="y">
+          <int>2</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="3">
+       <object class="model.data.Box" id="Box0">
+        <void property="position">
+         <void property="x">
+          <int>3</int>
+         </void>
+         <void property="y">
+          <int>2</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="6">
+       <object class="model.data.Wall" id="Wall9">
+        <void property="position">
+         <void property="x">
+          <int>6</int>
+         </void>
+         <void property="y">
+          <int>2</int>
+         </void>
+        </void>
+       </object>
+      </void>
+     </array>
+    </void>
+    <void index="3">
+     <array class="model.data.LevelObject" length="7">
+      <void index="0">
+       <object class="model.data.Wall" id="Wall10">
+        <void property="position">
+         <void property="y">
+          <int>3</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="3">
+       <object class="model.data.Destination" id="Destination0">
+        <void property="position">
+         <void property="x">
+          <int>3</int>
+         </void>
+         <void property="y">
+          <int>3</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="6">
+       <object class="model.data.Wall" id="Wall11">
+        <void property="position">
+         <void property="x">
+          <int>6</int>
+         </void>
+         <void property="y">
+          <int>3</int>
+         </void>
+        </void>
+       </object>
+      </void>
+     </array>
+    </void>
+    <void index="4">
+     <array class="model.data.LevelObject" length="7">
+      <void index="0">
+       <object class="model.data.Wall" id="Wall12">
+        <void property="position">
+         <void property="y">
+          <int>4</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="1">
+       <object class="model.data.Wall" id="Wall13">
+        <void property="position">
+         <void property="x">
+          <int>1</int>
+         </void>
+         <void property="y">
+          <int>4</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="2">
+       <object class="model.data.Wall" id="Wall14">
+        <void property="position">
+         <void property="x">
+          <int>2</int>
+         </void>
+         <void property="y">
+          <int>4</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="3">
+       <object class="model.data.Wall" id="Wall15">
+        <void property="position">
+         <void property="x">
+          <int>3</int>
+         </void>
+         <void property="y">
+          <int>4</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="4">
+       <object class="model.data.Wall" id="Wall16">
+        <void property="position">
+         <void property="x">
+          <int>4</int>
+         </void>
+         <void property="y">
+          <int>4</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="5">
+       <object class="model.data.Wall" id="Wall17">
+        <void property="position">
+         <void property="x">
+          <int>5</int>
+         </void>
+         <void property="y">
+          <int>4</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="6">
+       <object class="model.data.Wall" id="Wall18">
+        <void property="position">
+         <void property="x">
+          <int>6</int>
+         </void>
+         <void property="y">
+          <int>4</int>
+         </void>
+        </void>
+       </object>
+      </void>
+     </array>
+    </void>
+   </array>
+  </void>
+  <void property="player1">
+   <object class="model.data.Player" id="Player1">
+    <void property="position">
+     <void property="x">
+      <int>3</int>
+     </void>
+     <void property="y">
+      <int>1</int>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void property="playerPos">
+   <void property="x">
+    <int>3</int>
+   </void>
+   <void property="y">
+    <int>1</int>
+   </void>
+  </void>
+  <void property="width">
+   <int>7</int>
+  </void>
+ </object>
+</java>

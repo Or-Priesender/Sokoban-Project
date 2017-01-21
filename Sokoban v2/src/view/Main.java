@@ -1,8 +1,10 @@
 package view;
 	
+import controller.SokobanController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
+import model.data.MyModel;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
@@ -22,14 +24,21 @@ public class Main extends Application{
 		}
 	}
 	
-	public void startGUI(String[] args)
+	public static void main(String[] args)
 	{
-		//if i run it in a thread - it says view.main is not a subclass of javafx.Application ! 
+		
+		MainWindowController view = new MainWindowController();
+		MyModel model = new MyModel();
+		SokobanController c = new SokobanController(view,model);
+		view.addObserver(c);
+		model.addObserver(c);
 		launch(args);
-	}
+		}
+	
 	
 	public void stop()
 	{
+		
 		Platform.exit();
 	}
 

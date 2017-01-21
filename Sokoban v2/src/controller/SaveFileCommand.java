@@ -22,7 +22,7 @@ public class SaveFileCommand extends Command {
 	
 	public SaveFileCommand(Model model) throws FileNotFoundException
 	{
-		
+		this.model = model;
 		map = new HashMap<String,LevelSaverCreator>();
 		
 		//configuration of the map, can add more in the future
@@ -38,13 +38,14 @@ public class SaveFileCommand extends Command {
 	@Override
 	public void execute() throws IOException {
 		
-		String filename = params.get(0);
+		String filename = params.removeFirst();
 		out = new FileOutputStream(filename);
 		LevelSaverCreator c = map.get(filename.substring(filename.length()-3));
 		
 		if(c!=null){
 			saver = c.create();
-			model.saveLevel(out, saver);
+			if(saver!=null)
+				model.saveLevel(out, saver);
 		}
 	}
 

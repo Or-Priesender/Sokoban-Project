@@ -3,7 +3,7 @@ package controller;
 import model.data.Model;
 import view.Displayable;
 import view.LevelDisplayer;
-import view.LevelDisplayerGUI;
+import view.GUILevelDisplayer;
 import view.View;
 
 public class DisplayLevelCommand extends Command {

@@ -17,13 +17,14 @@ import model.data.MyModel;
 import model.policy.MySokobanPolicy;
 import view.CLI;
 import view.CharLevelDisplayer;
-import view.LevelDisplayerGUI;
+import view.GUILevelDisplayer;
 import view.Main;
-import view.MyView;
+import view.MainWindowController;
 
-public class Run {
 
-	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException {
+///public class Run {
+
+//	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException {
 		
 			/*things to consider:
 			 * text level loader is limited to 100*100 sized stages because of the reader mark, can be changed.
@@ -34,18 +35,16 @@ public class Run {
 			 */
 			
 			
-			 
-			CLI view = new CLI();
-			MyModel model = new MyModel();
-			SokobanController c = new SokobanController(view,model);
-			view.addObserver(c);
-			model.addObserver(c);
-			view.start(System.in, System.out);
+			
+			
+	//		Main main = new Main();
+		//	main.start(args);
 			
 			
 			
-	}
-}
+	//}
+//}
+
 			/*
 			
 			if(args.length < 2)
