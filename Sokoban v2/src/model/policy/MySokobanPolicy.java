@@ -3,12 +3,12 @@ package model.policy;
 
 
 
-import model.data.Box;
-import model.data.Destination;
-import model.data.Level;
-import model.data.LevelObject;
-import model.data.Point;
-import model.data.Wall;
+import model.data.level.Box;
+import model.data.level.Destination;
+import model.data.level.Level;
+import model.data.level.LevelObject;
+import model.data.level.Point;
+import model.data.level.Wall;
 
 public class MySokobanPolicy implements SokobanPolicy {
 

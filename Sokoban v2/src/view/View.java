@@ -4,8 +4,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Observable;
 
-import model.data.Level;
-import model.data.LevelObject;
+import model.data.level.Level;
+import model.data.level.LevelObject;
 
 public interface View {
 	

@@ -21,11 +21,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
-import model.data.Level;
-import model.data.LevelObject;
+import model.data.level.Level;
+import model.data.level.LevelObject;
 
 
-public class MainWindowController extends Observable implements Initializable,View{
+public class MainWindowController extends Observable implements View,Initializable{
 	
 	@FXML
 	GUILevelDisplayer levelDisplayer;
@@ -49,10 +49,11 @@ public class MainWindowController extends Observable implements Initializable,Vi
 				
 				List<String> params=new LinkedList<String>();
 				
-				System.out.println("1");
+				
 				if(event.getCode()== KeyCode.UP)
 				{
-					System.out.println("dsadas");
+					
+					levelDisplayer.setPlayerFileName(levelDisplayer.getPlayerUpFileName());
 					params.add("move");
 					params.add("up");
 					setChanged();
@@ -62,6 +63,7 @@ public class MainWindowController extends Observable implements Initializable,Vi
 				}
 				if(event.getCode()== KeyCode.DOWN)
 				{
+					levelDisplayer.setPlayerFileName(levelDisplayer.getPlayerDownFileName());
 					params.add("move");
 					params.add("down");
 					setChanged();
@@ -69,6 +71,7 @@ public class MainWindowController extends Observable implements Initializable,Vi
 				}
 				if(event.getCode()== KeyCode.RIGHT)
 				{
+					levelDisplayer.setPlayerFileName(levelDisplayer.getPlayerRightFileName());
 					params.add("move");
 					params.add("right");
 					setChanged();
@@ -76,6 +79,7 @@ public class MainWindowController extends Observable implements Initializable,Vi
 				}
 				if(event.getCode()== KeyCode.LEFT)
 				{
+					levelDisplayer.setPlayerFileName(levelDisplayer.getPlayerLeftFileName());
 					params.add("move");
 					params.add("left");
 					setChanged();
@@ -104,7 +108,7 @@ public class MainWindowController extends Observable implements Initializable,Vi
 			{
 				LinkedList<String> params = new LinkedList<String>();
 				params.add("load");
-				params.add("level1.txt");
+				params.add(chosen.getPath());
 				for(String s : params)
 					System.out.println(s);
 				

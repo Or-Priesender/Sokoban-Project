@@ -54,6 +54,6 @@
       </HBox>
    </bottom>
    <center>
-      <GUILevelDisplayer fx:id="levelDisplayer" height="300.0" width="300.0" BorderPane.alignment="CENTER" wallFileName="./resources/Wall.png" boxFileName="./resources/Box.png" destinationFileName="./resources/Destination.png" playerFileName="./resources/Player.png" backFileName="./resources/Back.png" />
+      <GUILevelDisplayer fx:id="levelDisplayer" height="300.0" width="300.0" BorderPane.alignment="CENTER" wallFileName="./resources/Wall.png" boxFileName="./resources/Box.png" destinationFileName="./resources/Destination.png" playerFileName="./resources/PlayerDown.png" playerDownFileName="./resources/PlayerDown.png" playerUpFileName="./resources/PlayerUp.png" playerRightFileName="./resources/PlayerRight.png" playerLeftFileName="./resources/PlayerLeft.png" backFileName="./resources/Back.png"  />
    </center>
 </BorderPane>

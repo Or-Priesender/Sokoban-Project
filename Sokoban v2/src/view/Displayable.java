@@ -1,7 +1,7 @@
 package view;
 
-import model.data.Level;
-import model.data.LevelObject;
+import model.data.level.Level;
+import model.data.level.LevelObject;
 
 public interface Displayable {
 	

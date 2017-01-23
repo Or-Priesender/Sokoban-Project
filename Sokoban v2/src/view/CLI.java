@@ -12,13 +12,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Scanner;
-import controller.Command;
-import controller.DisplayLevelCommand;
-import controller.ExitCommand;
-import controller.LoadFileCommand;
-import controller.SaveFileCommand;
-import model.data.Level;
-import model.data.LevelObject;
+
+import controller.commands.CommonModelViewCommand;
+import controller.commands.DisplayLevelCommand;
+import controller.commands.ExitCommand;
+import controller.commands.LoadFileCommand;
+import controller.commands.SaveFileCommand;
+import model.data.level.Level;
+import model.data.level.LevelObject;
 import model.policy.SokobanPolicy;
 
 public class CLI extends Observable implements View{
@@ -42,7 +43,11 @@ public class CLI extends Observable implements View{
 					String[] arr = line.split(" ");
 					List<String> params = new LinkedList<String>();
 					for(String s : arr)
+					{
+						
 						params.add(s);
+						
+					}
 					setChanged();
 					notifyObservers(params);
 					if(line.equals("exit"))

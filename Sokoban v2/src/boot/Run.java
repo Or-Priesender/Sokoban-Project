@@ -8,12 +8,12 @@ package boot;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import controller.LoadFileCommand;
 import controller.SokobanController;
+import controller.commands.LoadFileCommand;
 import controller.server.MyServer;
 import javafx.stage.Stage;
-import model.data.Level;
-import model.data.MyModel;
+import model.MyModel;
+import model.data.level.Level;
 import model.policy.MySokobanPolicy;
 import view.CLI;
 import view.CharLevelDisplayer;

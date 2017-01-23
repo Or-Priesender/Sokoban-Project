@@ -34,12 +34,16 @@ public class MyServer extends Observable {
 		server.setSoTimeout(1000);
 		Socket aClient = server.accept();
 		BufferedReader b = new BufferedReader(new InputStreamReader(aClient.getInputStream()));
+		LinkedList<String> params= new LinkedList<String>();
 		while(!stop)
 		{
-			LinkedList<String> list= new LinkedList<String>();
+			
 			commandKey = b.readLine();
-			list.addFirst(commandKey);
-			notifyObservers(list);
+			String[] list = commandKey.split(" ");
+			for(String s : list)
+				params.add(s);
+			notifyObservers(params);
+			
 		}
 		server.close();
 		

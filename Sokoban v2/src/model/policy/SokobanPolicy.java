@@ -1,6 +1,6 @@
 package model.policy;
 
-import model.data.Level;
+import model.data.level.Level;
 
 public interface SokobanPolicy {
 	

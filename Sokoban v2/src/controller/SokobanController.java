@@ -12,8 +12,15 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
+import controller.commands.Command;
+import controller.commands.CommonModelViewCommand;
+import controller.commands.DisplayLevelCommand;
+import controller.commands.ExitCommand;
+import controller.commands.LoadFileCommand;
+import controller.commands.MoveCommand;
+import controller.commands.SaveFileCommand;
 import controller.server.MyServer;
-import model.data.Model;
+import model.Model;
 import view.CharLevelDisplayer;
 import view.View;
 

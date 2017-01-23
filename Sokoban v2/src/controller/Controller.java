@@ -7,6 +7,9 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
+import controller.commands.Command;
+import controller.commands.CommonModelViewCommand;
+
 public class Controller {
 	
 	boolean keepGoing;

@@ -1,5 +1,7 @@
-package view;
+package model.data.files;
 
+import java.io.IOException;
+import java.io.OutputStream;
 
 import model.data.level.Box;
 import model.data.level.Destination;
@@ -8,28 +10,21 @@ import model.data.level.LevelObject;
 import model.data.level.Player;
 import model.data.level.Wall;
 
-public class CharLevelDisplayer extends LevelDisplayer {
+public class MyTextLevelSaver implements LevelSaver {
 
-	public CharLevelDisplayer(LevelObject[][] levelData)
-	{
-		super(levelData);
-	}
 	@Override
-	public void display() {
+	public void saveLevel(Level lvl, OutputStream out) throws IOException {
 		
-		System.out.println();
-	
-		for(int i=0;i<levelData.length;i++)
+		for(int i=0;i<lvl.getHeight();i++)
 		{
-			for(int j=0;j<levelData[i].length;j++) 
+			for(int j=0;j<lvl.getWidth();j++) 
 			{
-				System.out.print(LevelObjectToChar(levelData[i][j]));
-				
+				out.write(LevelObjectToChar(lvl.getMap()[i][j]));
 			}
-			System.out.println();
-			
+			//works only in windows! to do : find better solution
+			out.write('\r');
+			out.write('\n');
 		}
-		
 
 	}
 	
