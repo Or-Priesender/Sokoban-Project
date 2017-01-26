@@ -16,7 +16,7 @@ public class Level implements Serializable{
 	int width;
 	int height;
 	int destinationCounter;
-	int boxCounter;
+	int boxOnDestinationCounter;
 	Player player1;
 	Point playerPos;
 	
@@ -29,7 +29,7 @@ public class Level implements Serializable{
 		map = null;
 		playerPos = new Point2D(0,0);
 		player1=null;
-		boxCounter=0;
+		boxOnDestinationCounter = 0;
 		destinationCounter=0;
 	}
 	
@@ -42,10 +42,43 @@ public class Level implements Serializable{
 		this.map =lvl.getMap();
 		this.player1 = lvl.getPlayer1();
 		this.playerPos = lvl.getPlayerPos();
-		this.boxCounter = lvl.getBoxCounter();
+		this.boxOnDestinationCounter = lvl.getBoxOnDestinationCounter();
 		this.destinationCounter=lvl.getDestinationCounter();
 	}
 	
+	public boolean isFinished()
+	{
+		if(boxOnDestinationCounter == destinationCounter)
+			return true;
+		else return false;
+	}
+	
+	private int countDestinations()
+	{
+		int count = 0;
+		if(map != null)
+		{
+			for(int i=0;i<map.length;i++)
+			{
+				for(int j=0;j<map[i].length;j++)
+				{
+					if(map[i][j] instanceof Destination)
+						count++;
+				}
+			}
+		}
+		return count;
+	}
+	
+	
+	public int getBoxOnDestinationCounter() {
+		return boxOnDestinationCounter;
+	}
+
+	public void setBoxOnDestinationCounter(int boxOnDestinationCounter) {
+		this.boxOnDestinationCounter = boxOnDestinationCounter;
+	}
+
 	private LevelObject getObjectFromMap(Point p)
 	{
 		return map[p.getY()][p.getX()];
@@ -54,10 +87,16 @@ public class Level implements Serializable{
 	private void setObjectToMap(LevelObject o,Point p)
 	{
 		if(map[p.getY()][p.getX()] instanceof Destination)
-				o.setWasDestination(true);
+		{
+			o.setWasDestination(true);
+			if(o instanceof Box)
+				boxOnDestinationCounter++;
+		}
+				
 		
 				map[p.getY()][p.getX()] = o;
 				o.setPosition(p);
+				
 				
 				
 		
@@ -65,12 +104,13 @@ public class Level implements Serializable{
 	//this function works only if your policy allows it
 	public void movePlayer(Player p,Point current,Point target,Point draggedItem)
 	{
-		 
+		 		steps++;
 				//give a destination back to the array if we went over it
 				if(p.isWasDestination())
 				{
 					setObjectToMap(new Destination(), current);
 					p.setWasDestination(false);
+					
 				}
 				else map[current.getY()][current.getX()] = null;
 				//if we want to move a box
@@ -78,7 +118,10 @@ public class Level implements Serializable{
 				{
 					//if we are moving a box that is on a destination, now the player is on a destination
 					if(getObjectFromMap(target).isWasDestination())
+					{
 						p.setWasDestination(true);
+						boxOnDestinationCounter--;
+					}
 					setObjectToMap(new Box(),draggedItem);
 					
 				}
@@ -161,13 +204,7 @@ public class Level implements Serializable{
 		this.destinationCounter = destinationCounter;
 	}
 
-	public int getBoxCounter() {
-		return boxCounter;
-	}
-
-	public void setBoxCounter(int boxCounter) {
-		this.boxCounter = boxCounter;
-	}
+	
 	
 	
 	

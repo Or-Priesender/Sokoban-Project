@@ -97,8 +97,7 @@ public class MyTextLevelLoader implements LevelLoader {
 						newLevel.setPlayerPos(new Point2D(i,j));
 						newLevel.setPlayer1((Player)fac.getObject(seperated[j], new Point2D(i,j)));
 					}
-					else if(seperated[j]=='@')
-						newLevel.setBoxCounter(newLevel.getBoxCounter()+1);
+					
 					else if(seperated[j]=='o')
 						newLevel.setDestinationCounter(newLevel.getDestinationCounter()+1);
 					map[i][j]= fac.getObject(seperated[j],new Point2D(i,j));

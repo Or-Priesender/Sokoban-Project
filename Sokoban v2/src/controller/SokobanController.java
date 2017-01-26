@@ -16,12 +16,18 @@ import controller.commands.Command;
 import controller.commands.CommonModelViewCommand;
 import controller.commands.DisplayLevelCommand;
 import controller.commands.ExitCommand;
+import controller.commands.FinishedLevelCommand;
 import controller.commands.LoadFileCommand;
 import controller.commands.MoveCommand;
 import controller.commands.SaveFileCommand;
 import controller.server.MyServer;
+import javafx.application.Platform;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import model.Model;
 import view.CharLevelDisplayer;
+import view.ClientHandler;
 import view.View;
 
 public class SokobanController implements Observer {
@@ -33,6 +39,9 @@ public class SokobanController implements Observer {
 	MyServer server;
 	Map<String,Command> commands;
 	
+	IntegerProperty steps;
+	IntegerProperty time;
+	
 	
 	//controller has dependency on both view and model
 	public SokobanController(View view,Model model) {
@@ -40,6 +49,12 @@ public class SokobanController implements Observer {
 		this.view=view;
 		this.model=model;
 		controller = new Controller();
+		
+		//time = new SimpleIntegerProperty();
+		//view.bindTime(time);
+		
+		steps = new SimpleIntegerProperty();
+		view.bindSteps(steps);
 		
 		commands = new HashMap<String,Command>();
 		initCommands();
@@ -57,7 +72,31 @@ public class SokobanController implements Observer {
 		if(c!=null){
 		c.setParams(params);		
 		controller.insertCommand(c);
+		
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				steps.set(model.getSteps());
+				
+			}
+		});
+		
 		}
+	}
+	
+	public void startServer(ClientHandler handler,int port)
+	{
+		handler.addObserver(this);
+		server = new MyServer(port,handler);
+		server.start();
+	}
+	
+	public void stopServer()
+	{
+		if(server != null)
+			server.stop();
+		
 	}
 
 	public View getView() {
@@ -83,7 +122,8 @@ public class SokobanController implements Observer {
 	commands.put("display", new DisplayLevelCommand(model,view));
 	commands.put("load", new LoadFileCommand(model));
 	commands.put("save", new SaveFileCommand(model));
-	commands.put("exit", new ExitCommand(model,view));
+	commands.put("finished", new FinishedLevelCommand(view));
+	commands.put("exit", new ExitCommand(model,view,controller));
 	
 	} catch (FileNotFoundException e) {
 		

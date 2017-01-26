@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import javafx.beans.property.IntegerProperty;
 import model.data.files.LevelLoader;
 import model.data.files.LevelSaver;
 import model.data.level.Level;
@@ -20,5 +21,9 @@ public interface Model {
 	public LevelObject[][] getLevelData();
 	public void loadLevel(InputStream in,LevelLoader loader) throws ClassNotFoundException, IOException;
 	public void saveLevel(OutputStream out,LevelSaver saver) throws IOException;
+	public void safeExit();
+	public int getSteps();
+	public int getTime();
+	
 	
 }

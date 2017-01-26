@@ -20,10 +20,12 @@ public class GUILevelDisplayer extends Canvas {
 	LevelObject[][] levelData;
 	StringProperty wallFileName,boxFileName,backFileName,destinationFileName,playerFileName;
 	StringProperty playerDownFileName,playerUpFileName,playerRightFileName,playerLeftFileName;
+	StringProperty startingPageFileName,levelFinishedFileName;
 	Image wall,box,back,destination,player;
 	Image playerDown,playerUp,playerRight,playerLeft;
-	Level lvl;
-	int cCol,cRow;
+	Image openPage,levelFinished;
+	double width,height;
+	
 	
 	
 	public GUILevelDisplayer() {
@@ -37,11 +39,17 @@ public class GUILevelDisplayer extends Canvas {
 		playerUpFileName = new SimpleStringProperty();
 		playerRightFileName = new SimpleStringProperty();
 		playerLeftFileName = new SimpleStringProperty();
+		startingPageFileName = new SimpleStringProperty();
+		levelFinishedFileName = new SimpleStringProperty();
 		
-		
+		width = getWidth();
+		height = getHeight();
 		
 	}
-
+	
+	
+		
+	
 	
 	
 	public void redraw()
@@ -63,14 +71,16 @@ public class GUILevelDisplayer extends Canvas {
 			e.printStackTrace();
 			
 		}
+		GraphicsContext gc = getGraphicsContext2D();
+		double W = this.getWidth();
+		double H = this.getHeight();
 		
 		if(levelData!=null)
 		{
-			double W = this.getWidth();
-			double H = this.getHeight();
+			
 			double w = W / levelData[0].length;
 			double h = H / levelData.length;
-			GraphicsContext gc = getGraphicsContext2D();
+			
 			
 			gc.clearRect(0, 0, W, H);
 			
@@ -101,31 +111,80 @@ public class GUILevelDisplayer extends Canvas {
 			
 			
 		}
+		
 	}
-
 	
-
-	public int getcCol() {
-		return cCol;
-	}
-
-	public void setCharacterPosition(int row,int col)
+	public void displayFinished()
 	{
-		cRow=row;
-		cCol=col;
-		redraw();
+		try {
+			levelFinished = new Image(new FileInputStream(levelFinishedFileName.get()));
+			GraphicsContext gc = getGraphicsContext2D();
+			if(levelFinished!=null){
+				gc.drawImage(levelFinished, -10, 150);
+				
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	public int getcRow() {
-		return cRow;
+	public void displayOpenPage()
+	{
+		try {
+			openPage = new Image(new FileInputStream(startingPageFileName.get()));
+			if(openPage!=null){
+			GraphicsContext gc = getGraphicsContext2D();
+			double w = getWidth();
+			double h = getHeight();
+			
+			gc.drawImage(openPage,0,0);
+			
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	
 	public void display(LevelObject[][] levelData) {
 		setLevelData(levelData);
 		redraw();
 	}
 	
+	
+	
+	public String getLevelFinishedFileName() {
+		return levelFinishedFileName.get();
+	}
+
+
+
+
+
+
+	public void setLevelFinishedFileName(String levelFinishedFileName) {
+		
+		this.levelFinishedFileName.set(levelFinishedFileName);
+	}
+
+
+
+
+
+
+	public String getStartingPageFileName() {
+		return startingPageFileName.get();
+	}
+
+
+
+	public void setStartingPageFileName(String startingPageFileName) {
+		this.startingPageFileName.set(startingPageFileName);
+	}
+
+
+
 	public String getWallFileName() {
 		return wallFileName.get();
 	}

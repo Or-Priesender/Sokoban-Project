@@ -12,9 +12,12 @@ import java.util.List;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
+import javafx.beans.property.IntegerProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -30,22 +33,26 @@ public class MainWindowController extends Observable implements View,Initializab
 	@FXML
 	GUILevelDisplayer levelDisplayer;
 	
+	@FXML
+	Label stepsLabel,timeLabel;
+	
+	boolean starting = true;
+	
 			 
 	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		
+		if(starting){
+			levelDisplayer.displayOpenPage();
+			starting = false;
+		}
 		levelDisplayer.addEventFilter(MouseEvent.MOUSE_CLICKED, (e)->levelDisplayer.requestFocus());
 		levelDisplayer.setOnKeyPressed(new EventHandler<KeyEvent>(){
 			
 			@Override
 			public void handle(KeyEvent event) {
-				
-				
-				int r = levelDisplayer.getcRow();
-				int c = levelDisplayer.getcCol();
 				
 				List<String> params=new LinkedList<String>();
 				
@@ -58,7 +65,6 @@ public class MainWindowController extends Observable implements View,Initializab
 					params.add("up");
 					setChanged();
 					notifyObservers(params);
-					
 					
 				}
 				if(event.getCode()== KeyCode.DOWN)
@@ -87,14 +93,26 @@ public class MainWindowController extends Observable implements View,Initializab
 					
 				}
 				
-					
+					event.consume();
 				
 			}
 		});
 	}
-	public void start()
+	public void bindTime(IntegerProperty time)
 	{
-		
+		timeLabel.textProperty().bind(time.asString());
+	}
+	
+	public void bindSteps(IntegerProperty steps)
+	{
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				stepsLabel.textProperty().bind(steps.asString());
+				
+			}
+		});
 	}
 	
 	public void openFile(){
@@ -102,21 +120,58 @@ public class MainWindowController extends Observable implements View,Initializab
 		FileChooser fc = new FileChooser();
 			fc.setTitle("Open level file");
 			fc.setInitialDirectory(new File("./resources/"));
-			fc.setSelectedExtensionFilter(new ExtensionFilter("Text Files (*.txt)", ("*.txt")));
+			fc.getExtensionFilters().addAll(
+					new ExtensionFilter("Text","*.txt"),
+					new ExtensionFilter("XML","*.xml"),
+					new ExtensionFilter("Object","*.obj")
+					);
 			File chosen = fc.showOpenDialog(null);
 			if(chosen!=null)
 			{
 				LinkedList<String> params = new LinkedList<String>();
 				params.add("load");
 				params.add(chosen.getPath());
-				for(String s : params)
-					System.out.println(s);
-				
-				
 				setChanged();
 				notifyObservers(params);
 				
 			}
+	}
+	
+	public void saveFile(){
+		FileChooser fc = new FileChooser();
+		fc.setTitle("save level");
+		fc.setInitialDirectory(new File("./resources"));
+		fc.getExtensionFilters().addAll(
+				
+				new ExtensionFilter("Text","*.txt"),
+				new ExtensionFilter("XML","*.xml"),
+				new ExtensionFilter("Object","*.obj")
+				
+				);
+		
+		fc.setInitialFileName("level.xml");
+		File saved = fc.showSaveDialog(null);
+		if(saved!=null)
+		{
+			LinkedList<String> params = new LinkedList<String>();
+			params.add("save");
+			params.add(saved.getPath());
+			setChanged();
+			notifyObservers(params);
+		}
+		else
+		{
+			//display error
+		}
+		
+	}
+	
+	public void safeExit()
+	{
+		LinkedList<String> params = new LinkedList<String>();
+		params.add("exit");
+		setChanged();
+		notifyObservers(params);
 	}
 	
 	@Override
@@ -127,7 +182,25 @@ public class MainWindowController extends Observable implements View,Initializab
 	}
 	@Override
 	public void startCustomIO(InputStream in, OutputStream out) {
-		// TODO currently has no body
+		
+		
+	}
+	@Override
+	public void displayFinished()
+	{
+		levelDisplayer.display(levelDisplayer.getLevelData());
+		levelDisplayer.displayFinished();
+		
+	}
+
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void stop() {
+		// TODO Auto-generated method stub
 		
 	}
 	

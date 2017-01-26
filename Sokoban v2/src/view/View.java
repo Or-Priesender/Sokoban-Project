@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Observable;
 
+import javafx.beans.property.IntegerProperty;
 import model.data.level.Level;
 import model.data.level.LevelObject;
 
@@ -16,5 +17,14 @@ public interface View {
 	public void startCustomIO(InputStream in , OutputStream out);
 
 	public void start();
-
+	
+	public void displayFinished();
+	
+	public void bindSteps(IntegerProperty steps);
+	
+	public void bindTime(IntegerProperty time);
+	
+	public void stop();
+	
+	
 }
