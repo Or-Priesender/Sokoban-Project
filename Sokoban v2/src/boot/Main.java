@@ -7,15 +7,15 @@ package boot;
  * text level loader is reading the map alone, can be changed if needed.
  * char level displayer also displays map alone, can be changed if needed.
  * the CLI is currently familiar with up to 2 word commands.
- * level only handles the map, in the future : add other data members in txt loader and saver, and in move commands.	
+ * level only handle the map, in the future : add other data members in txt loader and saver
+ * 
  */
 
 
 
-import javax.print.DocFlavor.URL;
+
 
 import controller.SokobanController;
-import controller.server.MyServer;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -48,6 +48,10 @@ public class Main extends Application {
 			view.addObserver(c);
 			model.addObserver(c);
 			
+			primaryStage.setOnCloseRequest(event -> {
+				view.Exit();
+			});
+			
 			if(server == true)
 			{
 				System.out.println("running with server");
@@ -58,6 +62,7 @@ public class Main extends Application {
 			String filename = getClass().getResource("DST-IceCanyon1.mp3").toString();
 			Media media = new Media(filename);
 			MediaPlayer player = new MediaPlayer(media);
+			if(player != null){
 			player.setOnEndOfMedia(new Runnable() {
 				
 				@Override
@@ -68,7 +73,7 @@ public class Main extends Application {
 			});
 			player.setVolume(0.3);
 			player.play();
-			
+			}
 			Scene scene = new Scene(root,720,480);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);

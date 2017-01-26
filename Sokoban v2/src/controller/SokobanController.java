@@ -98,6 +98,14 @@ public class SokobanController implements Observer {
 			server.stop();
 		
 	}
+	
+	public void safeExit()
+	{
+		stopServer();
+		if(controller != null)
+			controller.stop();
+		
+	}
 
 	public View getView() {
 		return view;
@@ -123,7 +131,7 @@ public class SokobanController implements Observer {
 	commands.put("load", new LoadFileCommand(model));
 	commands.put("save", new SaveFileCommand(model));
 	commands.put("finished", new FinishedLevelCommand(view));
-	commands.put("exit", new ExitCommand(model,view,controller));
+	commands.put("exit", new ExitCommand(model,view,this));
 	
 	} catch (FileNotFoundException e) {
 		

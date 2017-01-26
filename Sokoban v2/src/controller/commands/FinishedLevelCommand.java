@@ -12,7 +12,7 @@ public class FinishedLevelCommand extends CommonViewCommand {
 	
 	@Override
 	public void execute() throws IOException {
-		
+	
 		view.displayFinished();
 
 	}

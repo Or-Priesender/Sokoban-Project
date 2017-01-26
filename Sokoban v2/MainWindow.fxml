@@ -39,7 +39,8 @@
          <children>
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#openFile" prefHeight="25.0" prefWidth="60.0" text="Load" />
             <Button layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onAction="#saveFile" prefHeight="25.0" prefWidth="60.0" text="Save" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Exit" />
+             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#Exit" prefHeight="25.0" prefWidth="60.0" text="Exit" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#Exit" prefHeight="25.0" prefWidth="60.0" text="Exit" />
          </children>
          <BorderPane.margin>
             <Insets bottom="10.0" right="10.0" top="10.0" />

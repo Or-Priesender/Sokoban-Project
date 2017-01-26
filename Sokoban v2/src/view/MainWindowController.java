@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
+import javax.management.timer.Timer;
+
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.event.EventHandler;
@@ -36,6 +38,9 @@ public class MainWindowController extends Observable implements View,Initializab
 	@FXML
 	Label stepsLabel,timeLabel;
 	
+	
+	
+	
 	boolean starting = true;
 	
 			 
@@ -48,6 +53,7 @@ public class MainWindowController extends Observable implements View,Initializab
 			levelDisplayer.displayOpenPage();
 			starting = false;
 		}
+		
 		levelDisplayer.addEventFilter(MouseEvent.MOUSE_CLICKED, (e)->levelDisplayer.requestFocus());
 		levelDisplayer.setOnKeyPressed(new EventHandler<KeyEvent>(){
 			
@@ -115,6 +121,14 @@ public class MainWindowController extends Observable implements View,Initializab
 		});
 	}
 	
+	public void Exit()
+	{
+		LinkedList<String> params = new LinkedList<String>();
+		params.add("exit");
+		setChanged();
+		notifyObservers(params);
+	}
+	
 	public void openFile(){
 		
 		FileChooser fc = new FileChooser();
@@ -180,11 +194,7 @@ public class MainWindowController extends Observable implements View,Initializab
 		levelDisplayer.display(levelData);
 		}
 	}
-	@Override
-	public void startCustomIO(InputStream in, OutputStream out) {
-		
-		
-	}
+	
 	@Override
 	public void displayFinished()
 	{
@@ -192,17 +202,14 @@ public class MainWindowController extends Observable implements View,Initializab
 		levelDisplayer.displayFinished();
 		
 	}
+	
+	@Override
+	public void stop()
+	{
+		Platform.exit();
+	}
 
-	@Override
-	public void start() {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void stop() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 	
 	

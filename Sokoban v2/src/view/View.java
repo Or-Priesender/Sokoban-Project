@@ -14,10 +14,6 @@ public interface View {
 	
 	public void display(LevelObject[][] levelData);
 	
-	public void startCustomIO(InputStream in , OutputStream out);
-
-	public void start();
-	
 	public void displayFinished();
 	
 	public void bindSteps(IntegerProperty steps);
@@ -25,6 +21,8 @@ public interface View {
 	public void bindTime(IntegerProperty time);
 	
 	public void stop();
+	
+
 	
 	
 }

@@ -1,19 +1,11 @@
 package controller.server;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.DataInputStream;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.channels.AcceptPendingException;
-import java.util.LinkedList;
 import java.util.Observable;
-
 import view.ClientHandler;
-
-
 
 
 public class MyServer extends Observable {
@@ -26,7 +18,7 @@ public class MyServer extends Observable {
 	
 	public MyServer(int port,ClientHandler Observedhandler)
 	{
-		this.handler = handler;
+		this.handler = Observedhandler;
 		this.port=port;
 		stop = false;
 	}

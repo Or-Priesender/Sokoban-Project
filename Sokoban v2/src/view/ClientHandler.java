@@ -27,9 +27,14 @@ public class ClientHandler extends Observable implements View{
 
 	boolean stop = false;
 	Displayable displayable;
+	OutputStream out;
+	InputStream in;
 	
 	public void startCustomIO(InputStream in,OutputStream out)
 	{
+		this.out = out;
+		this.in = in;
+		
 		Scanner scan = new Scanner(in);
 		PrintStream writer = new PrintStream(out);
 	
@@ -62,21 +67,30 @@ public class ClientHandler extends Observable implements View{
 			
 			
 	}
+	public void setOutputStream(OutputStream out)
+	{
+		this.out = out;
+	}
+	public void setInputStream(InputStream in)
+	{
+		this.in = in;
+	}
+	
+	public void stop()
+	{
+		stop = true;
+		
+	}
 
 	@Override
 	public void display(LevelObject[][] levelData) {
 		
-		displayable = new CharLevelDisplayer(levelData); 
+		displayable = new CharLevelDisplayer(levelData,this.out); 
 		displayable.display();
 		
 	}
-
-	@Override
-	public void start() {
-		
-		startCustomIO(System.in, System.out);
-		
-	}
+	
+	
 
 	@Override
 	public void displayFinished() {
@@ -97,12 +111,7 @@ public class ClientHandler extends Observable implements View{
 		
 	}
 
-	@Override
-	public void stop() {
-		
-		stop = true;
-		
-	}
+	
 	
 
 }

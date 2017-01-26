@@ -90,7 +90,7 @@ public class MyModel extends Observable implements Model {
 		
 		if(lvl != null)
 		{
-			activateTimerAndNotify();
+			//activateTimerAndNotify();
 			LinkedList<String> params = new LinkedList<String>();
 			params.add("display");
 			this.setChanged();
@@ -238,8 +238,9 @@ public class MyModel extends Observable implements Model {
 	private void stopTimer()
 	{
 		stopTimer = true;
+		if(lvl != null){
 		lvl.setTime(seconds);
-		
+		}
 	}
 
 
