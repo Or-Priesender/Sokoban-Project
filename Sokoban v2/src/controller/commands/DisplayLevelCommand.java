@@ -1,9 +1,6 @@
 package controller.commands;
 
 import model.Model;
-import view.Displayable;
-import view.LevelDisplayer;
-import view.GUILevelDisplayer;
 import view.View;
 
 public class DisplayLevelCommand extends CommonModelViewCommand {

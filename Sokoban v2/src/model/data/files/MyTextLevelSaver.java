@@ -21,9 +21,10 @@ public class MyTextLevelSaver implements LevelSaver {
 			{
 				out.write(LevelObjectToChar(lvl.getMap()[i][j]));
 			}
-			//works only in windows! to do : find better solution
-			out.write('\r');
-			out.write('\n');
+			
+		
+			out.write(System.getProperty("line.separator").getBytes());
+			
 		}
 
 	}

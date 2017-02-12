@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class LevelObject implements Serializable {
 	private static final long serialVersionUID = 1L;
-	Point position;
-	boolean wasDestination;
+	protected Point position;
+	protected boolean wasDestination;
 	
 	public LevelObject()
 	{

@@ -35,13 +35,13 @@ public class MyTextLevelLoader implements LevelLoader {
 		
 		int height=0;
 		int width=0;
-		int k=0;
 		r.mark(1000);
 		do
 		{
 			line = r.readLine();
 			if(line!=null){
-				if(width<line.length())
+				
+				 if(width<line.length())
 					width = line.length();
 				height++;
 			}

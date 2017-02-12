@@ -6,7 +6,7 @@ import model.data.files.Createable;
 
 public class LevelObjectFactory {
 	
-	HashMap<Character, Createable> hm;
+	private HashMap<Character, Createable> hm;
 	
 	public LevelObjectFactory()
 	{

@@ -3,17 +3,15 @@ package view;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
-
 import model.data.level.Box;
 import model.data.level.Destination;
-import model.data.level.Level;
 import model.data.level.LevelObject;
 import model.data.level.Player;
 import model.data.level.Wall;
 
 public class CharLevelDisplayer extends LevelDisplayer {
 	
-	PrintStream writer;
+	protected PrintStream writer;
 
 	public CharLevelDisplayer(LevelObject[][] levelData)
 	{

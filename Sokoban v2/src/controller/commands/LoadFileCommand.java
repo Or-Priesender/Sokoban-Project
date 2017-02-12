@@ -1,24 +1,23 @@
 package controller.commands;
-import java.io.File;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
-
 import model.Model;
 import model.data.files.LevelLoader;
 import model.data.files.LevelLoaderCreator;
 import model.data.files.ObjectLevelLoaderCreator;
 import model.data.files.TextLevelLoaderCreator;
 import model.data.files.XMLLevelLoaderCreator;
-import model.data.level.Level;
+
 
 public class LoadFileCommand extends CommonModelCommand {
 	
-	HashMap<String,LevelLoaderCreator> map;
+	private HashMap<String,LevelLoaderCreator> map;
 	
-	LevelLoader loader;
-	FileInputStream in;
+	protected LevelLoader loader;
+	protected FileInputStream in;
 	
 	
 

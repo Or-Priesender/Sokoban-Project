@@ -12,9 +12,9 @@ import model.data.level.Wall;
 
 public class MySokobanPolicy implements SokobanPolicy {
 
-	boolean levelChanged;
 	
-	@Override//this function checks if it is possible to move to the desired location
+	//this function checks if it is possible to move to the desired location
+	@Override
 	public boolean Possible(Level lvl, String direction) {
 	if (lvl != null){
 	Point	p=lvl.getPlayerPos();

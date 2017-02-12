@@ -11,16 +11,15 @@ import view.ClientHandler;
 public class MyServer extends Observable {
 	
 	private int port;
-	private boolean stop;
 	private ClientHandler handler;
-	Thread thread;
+	private Thread thread;
 	
 	
 	public MyServer(int port,ClientHandler Observedhandler)
 	{
 		this.handler = Observedhandler;
 		this.port=port;
-		stop = false;
+		
 	}
 	
 	

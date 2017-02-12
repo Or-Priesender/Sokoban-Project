@@ -1,6 +1,6 @@
 package model.data.level;
 
-public class Player extends MovingLevelObject implements Moveable {
+public class Player extends LevelObject{
 	
 	
 
@@ -12,30 +12,7 @@ public class Player extends MovingLevelObject implements Moveable {
 		super(pos);
 	}
 
-	@Override
-	public void moveDown() {
-		// TODO Auto-generated method stub
-		
-	}
 	
-	@Override
-	public void moveLeft() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void moveRight() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void moveUp() {
-		
-		
-		
-	}
 	
 	
 }

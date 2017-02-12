@@ -1,12 +1,9 @@
 package controller.commands;
 
 
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
+import java.util.LinkedList;
 import model.Model;
-import model.data.level.Level;
 import view.View;
 
 public abstract class CommonModelViewCommand implements Command {

@@ -1,19 +1,16 @@
 package controller;
 
 import java.io.IOException;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
-
 import controller.commands.Command;
-import controller.commands.CommonModelViewCommand;
+
 
 public class Controller {
 	
-	boolean keepGoing;
-	BlockingQueue<Command> q;
+	private boolean keepGoing;
+	private BlockingQueue<Command> q;
 	
 	public Controller()
 	{

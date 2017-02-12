@@ -3,8 +3,8 @@ package model.data.level;
 import java.io.Serializable;
 
 public class Point implements Serializable {
-	int x;
-	int y;
+	protected int x;
+	protected int y;
 
 	public Point() {
 		x=0;

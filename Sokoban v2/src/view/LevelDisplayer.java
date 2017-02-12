@@ -1,6 +1,5 @@
 package view;
 
-import model.data.level.Level;
 import model.data.level.LevelObject;
 
 public class LevelDisplayer implements Displayable {

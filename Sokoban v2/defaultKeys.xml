@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_121" class="java.beans.XMLDecoder">
+ <object class="java.lang.Enum" method="valueOf">
+  <class>javafx.scene.input.KeyCode</class>
+  <string>UP</string>
+ </object>
+ <object class="java.lang.Enum" method="valueOf">
+  <class>javafx.scene.input.KeyCode</class>
+  <string>DOWN</string>
+ </object>
+ <object class="java.lang.Enum" method="valueOf">
+  <class>javafx.scene.input.KeyCode</class>
+  <string>RIGHT</string>
+ </object>
+ <object class="java.lang.Enum" method="valueOf">
+  <class>javafx.scene.input.KeyCode</class>
+  <string>LEFT</string>
+ </object>
+</java>

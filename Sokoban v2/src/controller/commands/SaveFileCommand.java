@@ -14,9 +14,9 @@ import model.data.level.Level;
 
 public class SaveFileCommand extends CommonModelCommand {
 
-	HashMap<String,LevelSaverCreator> map;
-	FileOutputStream out;
-	LevelSaver saver;
+	protected HashMap<String,LevelSaverCreator> map;
+	protected FileOutputStream out;
+	protected LevelSaver saver;
 	
 	
 	

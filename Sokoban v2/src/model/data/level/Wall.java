@@ -7,6 +7,7 @@ public class Wall extends LevelObject {
 	{
 		super(new Point2D(0,0));
 	}
+	
 	public Wall(Point pos) {
 		super(pos);
 	}

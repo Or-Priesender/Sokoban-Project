@@ -1,16 +1,14 @@
 package controller.commands;
 
-import controller.Controller;
+
 import controller.SokobanController;
-import controller.server.MyServer;
-import javafx.application.Platform;
 import model.Model;
 import view.View;
 
 
 public class ExitCommand extends CommonModelViewCommand {
 	
-	SokobanController controller;
+	protected SokobanController controller;
 	
 	
 	public ExitCommand(Model model,View view,SokobanController controller) {

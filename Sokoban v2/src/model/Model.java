@@ -22,6 +22,7 @@ public interface Model {
 	public void loadLevel(InputStream in,LevelLoader loader) throws ClassNotFoundException, IOException;
 	public void saveLevel(OutputStream out,LevelSaver saver) throws IOException;
 	public void safeExit();
+	public void checkRecord(int num);
 	public int getSteps();
 	public int getTime();
 	

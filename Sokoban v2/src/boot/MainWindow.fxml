@@ -37,6 +37,7 @@
    <left>
       <VBox spacing="5.0" BorderPane.alignment="CENTER">
          <children>
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#start" prefHeight="25.0" prefWidth="60.0" text="Start" />
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#openFile" prefHeight="25.0" prefWidth="60.0" text="Load" />
             <Button layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onAction="#saveFile" prefHeight="25.0" prefWidth="60.0" text="Save" />
             <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" onAction="#Exit" text="Exit" />
@@ -50,7 +51,7 @@
       <HBox spacing="500.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="stepsLabel" text="Status" />
-            <Label />
+            <Label fx:id="timeLabel" text="Second"/>
          </children>
       </HBox>
    </bottom>

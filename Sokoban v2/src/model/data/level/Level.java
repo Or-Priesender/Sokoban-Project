@@ -8,17 +8,17 @@ import model.policy.SokobanPolicy;
 public class Level implements Serializable{
 
 	
-	LevelObject[][] map;
-	int difficulty;
-	int time;
-	int steps;
-	String levelName;
-	int width;
-	int height;
-	int destinationCounter;
-	int boxOnDestinationCounter;
-	Player player1;
-	Point playerPos;
+	private LevelObject[][] map;
+	private int difficulty;
+	private int time;
+	private int steps;
+	private String levelName;
+	private int width;
+	private int height;
+	private int destinationCounter;
+	private int boxOnDestinationCounter;
+	private Player player1;
+	private Point playerPos;
 	
 	public Level()
 	{
@@ -51,23 +51,6 @@ public class Level implements Serializable{
 		if(boxOnDestinationCounter == destinationCounter)
 			return true;
 		else return false;
-	}
-	
-	private int countDestinations()
-	{
-		int count = 0;
-		if(map != null)
-		{
-			for(int i=0;i<map.length;i++)
-			{
-				for(int j=0;j<map[i].length;j++)
-				{
-					if(map[i][j] instanceof Destination)
-						count++;
-				}
-			}
-		}
-		return count;
 	}
 	
 	

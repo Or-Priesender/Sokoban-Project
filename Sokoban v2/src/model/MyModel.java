@@ -24,10 +24,10 @@ import model.policy.SokobanPolicy;
 
 public class MyModel extends Observable implements Model {
 
-	private Level lvl;
-	private SokobanPolicy p;
-	private int steps;
-	private int seconds;
+	protected Level lvl;
+	protected SokobanPolicy p;
+	protected int steps;
+	protected int seconds;
 	private boolean stopTimer;
 	
 
@@ -138,7 +138,6 @@ public class MyModel extends Observable implements Model {
 		if(isFinished())
 		{
 			params.add("finished");
-			stopTimer();
 			setChanged();
 			notifyObservers(params);
 		}
@@ -199,54 +198,30 @@ public class MyModel extends Observable implements Model {
 				e.printStackTrace();
 			}
 		}
-		stopTimer();
+	
 		
 		
 			
 		
 	}
-	private void activateTimerAndNotify()
-	{
-		
-		LinkedList<String> params = new LinkedList<String>();
-		
-			new Thread(new Runnable() {
-				
-				@Override
-				public void run() {
-					try {
-						while(!stopTimer)
-						{
-						seconds++;
-						Thread.sleep(1000);
-						params.add("time");
-						setChanged();
-						notifyObservers(params);
-						System.out.println("fix bind" + seconds);
-						
-						}
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-				}
-			}).start();
-		
-	}
 	
-	private void stopTimer()
-	{
-		stopTimer = true;
-		if(lvl != null){
-		lvl.setTime(seconds);
-		}
-	}
 
 
 	@Override
 	public int getTime() {
 		return seconds;
+		
+	}
+
+
+	@Override
+	public void checkRecord(int num) {
+		if(lvl != null)
+		{
+			if(num < lvl.getTime())
+				lvl.setTime(num);
+		}
+		
 		
 	}
 

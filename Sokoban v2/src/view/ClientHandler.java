@@ -1,41 +1,30 @@
 package view;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Scanner;
-
-import controller.commands.CommonModelViewCommand;
-import controller.commands.DisplayLevelCommand;
-import controller.commands.ExitCommand;
-import controller.commands.LoadFileCommand;
-import controller.commands.SaveFileCommand;
 import javafx.beans.property.IntegerProperty;
-import model.data.level.Level;
 import model.data.level.LevelObject;
-import model.policy.SokobanPolicy;
 
 public class ClientHandler extends Observable implements View{
 
-	boolean stop = false;
-	Displayable displayable;
-	OutputStream out;
-	InputStream in;
+	protected boolean stop = false;
+	protected Displayable displayable;
+	protected OutputStream out;
+	protected InputStream in;
+	protected Scanner scan;
 	
 	public void startCustomIO(InputStream in,OutputStream out)
 	{
 		this.out = out;
 		this.in = in;
 		
-		Scanner scan = new Scanner(in);
+		scan = new Scanner(in);
 		PrintStream writer = new PrintStream(out);
 	
 		
@@ -78,7 +67,16 @@ public class ClientHandler extends Observable implements View{
 	
 	public void stop()
 	{
-		stop = true;
+		try {
+			out.close();
+			in.close();
+			scan.close();
+			stop = true;
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		
 		
 	}
 
@@ -104,12 +102,13 @@ public class ClientHandler extends Observable implements View{
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
-	public void bindTime(IntegerProperty time) {
-		// TODO Auto-generated method stub
+	public void displayRecord(int record) {
+		
+		System.out.println(record);
 		
 	}
+
 
 	
 	

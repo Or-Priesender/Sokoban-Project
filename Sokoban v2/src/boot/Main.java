@@ -49,7 +49,7 @@ public class Main extends Application {
 			model.addObserver(c);
 			
 			primaryStage.setOnCloseRequest(event -> {
-				view.Exit();
+				view.exit();
 			});
 			
 			if(server == true)
@@ -59,24 +59,28 @@ public class Main extends Application {
 			}
 			
 			//set the music from outside the code and run it in loops
-			String filename = getClass().getResource("DST-IceCanyon1.mp3").toString();
-			Media media = new Media(filename);
-			MediaPlayer player = new MediaPlayer(media);
-			if(player != null){
-			player.setOnEndOfMedia(new Runnable() {
-				
-				@Override
-				public void run() {
-					player.seek(Duration.ZERO);
+			
+					String filename = getClass().getResource("Music.mp3").toString();
+					Media media = new Media(filename);
+					MediaPlayer player = new MediaPlayer(media);
+					if(player != null){
+					player.setOnEndOfMedia(new Runnable() {
+						
+						@Override
+						public void run() {
+							player.seek(Duration.ZERO);
+							
+						}
+					});
 					
-				}
-			});
-			player.setVolume(0.3);
-			player.play();
-			}
-			Scene scene = new Scene(root,720,480);
+					player.setVolume(0.4);
+					player.play();
+					
+					}
+			Scene scene = new Scene(root,700,500);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("Sokoban");
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

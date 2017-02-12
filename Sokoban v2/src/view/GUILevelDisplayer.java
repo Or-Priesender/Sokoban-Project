@@ -2,7 +2,6 @@ package view;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.canvas.Canvas;
@@ -17,14 +16,14 @@ import model.data.level.Wall;
 
 public class GUILevelDisplayer extends Canvas {
 	
-	LevelObject[][] levelData;
-	StringProperty wallFileName,boxFileName,backFileName,destinationFileName,playerFileName;
-	StringProperty playerDownFileName,playerUpFileName,playerRightFileName,playerLeftFileName;
-	StringProperty startingPageFileName,levelFinishedFileName;
-	Image wall,box,back,destination,player;
-	Image playerDown,playerUp,playerRight,playerLeft;
-	Image openPage,levelFinished;
-	double width,height;
+	protected LevelObject[][] levelData;
+	protected StringProperty wallFileName,boxFileName,backFileName,destinationFileName,playerFileName;
+	protected StringProperty playerDownFileName,playerUpFileName,playerRightFileName,playerLeftFileName;
+	protected StringProperty startingPageFileName,levelFinishedFileName;
+	private Image wall,box,back,destination,player;
+	private Image playerDown,playerRight,playerLeft,playerUp;
+	private Image openPage,levelFinished;
+	protected double width,height;
 	
 	
 	
@@ -42,6 +41,7 @@ public class GUILevelDisplayer extends Canvas {
 		startingPageFileName = new SimpleStringProperty();
 		levelFinishedFileName = new SimpleStringProperty();
 		
+		//get the canvas size
 		width = getWidth();
 		height = getHeight();
 		
@@ -52,10 +52,9 @@ public class GUILevelDisplayer extends Canvas {
 	
 	
 	
-	public void redraw()
+	public void redraw() throws FileNotFoundException
 	{
 		
-		try {
 			wall = new Image(new FileInputStream(wallFileName.get()));
 			box = new Image(new FileInputStream(boxFileName.get()));
 			back = new Image(new FileInputStream(backFileName.get()));
@@ -66,11 +65,7 @@ public class GUILevelDisplayer extends Canvas {
 			playerLeft = new Image(new FileInputStream(playerLeftFileName.get()));
 			playerRight = new Image(new FileInputStream(playerRightFileName.get()));
 			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
-		}
+		
 		GraphicsContext gc = getGraphicsContext2D();
 		double W = this.getWidth();
 		double H = this.getHeight();
@@ -147,10 +142,12 @@ public class GUILevelDisplayer extends Canvas {
 		}
 	}
 
-	public void display(LevelObject[][] levelData) {
+	public void display(LevelObject[][] levelData) throws FileNotFoundException {
 		setLevelData(levelData);
 		redraw();
 	}
+	
+	
 	
 	
 	
