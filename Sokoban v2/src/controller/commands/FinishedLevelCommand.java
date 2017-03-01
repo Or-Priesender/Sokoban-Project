@@ -4,6 +4,10 @@ import java.io.IOException;
 
 import view.View;
 
+/*
+ * This command tells the view that the player completed the stage.
+ */
+
 public class FinishedLevelCommand extends CommonViewCommand {
 
 	public  FinishedLevelCommand(View view) {

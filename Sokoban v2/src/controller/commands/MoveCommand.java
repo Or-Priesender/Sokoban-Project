@@ -12,6 +12,10 @@ import model.policy.SokobanPolicy;
 
 import java.awt.geom.Point2D;
 
+/*
+ * This class tells the Model to move the player in the desired direction.
+ */
+
 public class MoveCommand extends CommonModelCommand {
 
 	
@@ -21,7 +25,7 @@ public class MoveCommand extends CommonModelCommand {
 	{
 		this.model = model;
 	}
-	//he just did move(direction) and thats it ? ? ?
+	
 	
 	@Override
 	public  void execute() {

@@ -25,6 +25,7 @@ public class LevelObject implements Serializable {
 	public void setPosition(Point position) {
 		this.position = position;
 	}
+	//checks if this object is on a destination
 	public boolean isWasDestination() {
 		return wasDestination;
 	}

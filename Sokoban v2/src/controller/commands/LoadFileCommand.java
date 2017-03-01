@@ -11,6 +11,10 @@ import model.data.files.ObjectLevelLoaderCreator;
 import model.data.files.TextLevelLoaderCreator;
 import model.data.files.XMLLevelLoaderCreator;
 
+/*
+ * This class loads a file according to it's file extension.
+ * If you wish to inherit this class, you should set the HashMap accordingly.
+ */
 
 public class LoadFileCommand extends CommonModelCommand {
 	
@@ -47,6 +51,7 @@ public class LoadFileCommand extends CommonModelCommand {
 			String filename = params.removeFirst();	
 	
 			in = new FileInputStream(filename);
+			//gets the last 3 letters of the filename (it's file extension)
 			LevelLoaderCreator c = map.get(filename.substring(filename.length()-3));
 			if (c!=null){
 				loader = c.create();

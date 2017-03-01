@@ -8,6 +8,10 @@ import java.io.InputStream;
 
 import model.data.level.Level;
 
+/*
+ * Loads an xml file with any InputStream
+ */
+
 public class MyXMLLevelLoader implements LevelLoader {
 
 	@Override

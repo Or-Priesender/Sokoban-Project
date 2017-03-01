@@ -6,6 +6,10 @@ import java.io.OutputStream;
 
 import model.data.level.Level;
 
+/*
+ * Saves an object file with any OutputStream
+ */
+
 public class MyObjectLevelSaver implements LevelSaver {
 
 	@Override

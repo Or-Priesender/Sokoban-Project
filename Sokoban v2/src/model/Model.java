@@ -11,6 +11,7 @@ import model.data.level.Level;
 import model.data.level.LevelObject;
 import model.policy.SokobanPolicy;
 
+
 public interface Model {
 
 	public Level getLevel();

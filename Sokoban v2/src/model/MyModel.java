@@ -22,13 +22,16 @@ import model.data.level.Point;
 import model.policy.MySokobanPolicy;
 import model.policy.SokobanPolicy;
 
+/*
+ * This class groups the whole Model layer into one usable class.
+ */
+
 public class MyModel extends Observable implements Model {
 
 	protected Level lvl;
 	protected SokobanPolicy p;
 	protected int steps;
 	protected int seconds;
-	private boolean stopTimer;
 	
 
 	public MyModel()
@@ -58,17 +61,12 @@ public class MyModel extends Observable implements Model {
 		return lvl;
 	}
 	
-	
+	//checks if the player finished the stage
 	@Override
 	public boolean isFinished() {
-			if(lvl!=null){
-				 if(lvl.isFinished()){
-					 
-					return true;
-				 }
-				 else return false;
-			}
-			else return false;
+			if(lvl==null)
+				return false;
+			else return lvl.isFinished();
 	}
 	public Level getCurrent() {
 		return lvl;
@@ -84,20 +82,21 @@ public class MyModel extends Observable implements Model {
 		
 	}
 	
+	//loads a level and sends a display message to let the controller know that the level has changed
 	public void loadLevel(InputStream in,LevelLoader loader) throws ClassNotFoundException, IOException
 	{
 		lvl = loader.loadLevel(in);
 		
 		if(lvl != null)
 		{
-			//activateTimerAndNotify();
+			
 			LinkedList<String> params = new LinkedList<String>();
 			params.add("display");
 			this.setChanged();
 			this.notifyObservers(params);
 		}
 	}
-
+	//moves the player to desired direction if the implemented policy allows it
 	@Override
 	public void move(String direction) {
 		if(p.Possible(lvl, direction)&&!isFinished())
@@ -134,7 +133,7 @@ public class MyModel extends Observable implements Model {
 			steps = lvl.getSteps();			
 		}
 		LinkedList<String> params = new LinkedList<String>();
-		
+		//checks if the player has finished the stage after moving to desired location
 		if(isFinished())
 		{
 			params.add("finished");
@@ -179,12 +178,14 @@ public class MyModel extends Observable implements Model {
 			this.setChanged();
 			LinkedList<String> params = new LinkedList<String>();
 			params.add("message");
-			params.add("saved");
+			params.add("Saved");
+			params.add("Level saved succesfully");
+			notifyObservers(params);
 		}
 		
 	}
 
-
+	//saves before exit
 	@Override
 	public void safeExit() {
 		

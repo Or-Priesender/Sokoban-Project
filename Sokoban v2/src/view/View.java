@@ -15,7 +15,11 @@ public interface View {
 	
 	public void displayRecord(int record);
 	
+	public void serverStatus(boolean status);
+	
 	public void stop();
+	
+	public void displayAlert(String title,String content);
 	
 
 	

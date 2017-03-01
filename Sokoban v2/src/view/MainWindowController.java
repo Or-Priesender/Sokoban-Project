@@ -6,7 +6,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -17,7 +16,6 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -40,6 +38,9 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.util.Duration;
 import model.data.level.LevelObject;
 
+/*
+ * This class is the GUI's controller, it gets all data from an XML file outside the code.
+ */
 
 public class MainWindowController extends Observable implements View,Initializable{
 	
@@ -47,7 +48,7 @@ public class MainWindowController extends Observable implements View,Initializab
 	GUILevelDisplayer levelDisplayer;
 	
 	@FXML
-	Label stepsLabel,timeLabel;
+	Label stepsLabel,timeLabel,serverLabel;
 	
 	private IntegerProperty seconds;
 	private Timeline timeline;
@@ -56,17 +57,19 @@ public class MainWindowController extends Observable implements View,Initializab
 	private boolean firstMove = true;
 	private KeyDefinitions currentDef;
 	
+	
 			 
 	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
+		//set up variables for when the program is starting
 		if(firstLaunch){
+			serverStatus(false);
 			seconds = new SimpleIntegerProperty(0);
 			timeLabel.textProperty().bind(seconds.asString());
 			levelDisplayer.displayOpenPage();
-			
 			timeline = new Timeline();
 			timeline.setCycleCount(Timeline.INDEFINITE);
 			timeline.setRate(1.0);
@@ -94,6 +97,7 @@ public class MainWindowController extends Observable implements View,Initializab
 				List<String> params=new LinkedList<String>();
 				
 			if(gameInProgress){	
+				//checks according to whatever controls you set up
 				if(currentDef.getCommand(event.getCode())==KeyCode.UP)
 				{
 					if(firstMove){
@@ -155,6 +159,7 @@ public class MainWindowController extends Observable implements View,Initializab
 		});
 	}
 	
+	//change controls to already prepared layouts or a custom layout.
 	public void changeControls()
 	{
 				
@@ -191,6 +196,22 @@ public class MainWindowController extends Observable implements View,Initializab
 	
 	}
 	
+	//displays an alert to the string
+	@Override
+	public void displayAlert(String title,String content) {
+		
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle(title);
+		alert.setHeaderText("");
+		if(content != null)
+			alert.setContentText(content);
+		else alert.setContentText(title);
+		alert.showAndWait();
+		
+		
+	}
+	
+	//should check if user chose same controls for two actions
 	private void customControlsDialog() throws FileNotFoundException{
 		
 		KeyCode up=null,down=null,right=null,left=null;
@@ -256,13 +277,14 @@ public class MainWindowController extends Observable implements View,Initializab
 		
 		
 	}
-	
+	//TODO : ADD TIME COMMAND TO UPDATE THE RECORD IN THE MODEL
 	private void checkRecord(int time){
 		LinkedList<String> params = new LinkedList<String>();
 		params.add("time");
 		params.add(String.valueOf(time));
 	}
 	
+	//binds between the steps label and the steps given by the controller
 	public void bindSteps(IntegerProperty steps)
 	{
 		Platform.runLater(new Runnable() {
@@ -275,6 +297,7 @@ public class MainWindowController extends Observable implements View,Initializab
 		});
 	}
 	
+	//user informs the program he wants to exit.
 	public void exit()
 	{
 		LinkedList<String> params = new LinkedList<String>();
@@ -283,6 +306,7 @@ public class MainWindowController extends Observable implements View,Initializab
 		notifyObservers(params);
 	}
 	
+	//load a level
 	public void openFile(){
 		
 		FileChooser fc = new FileChooser();
@@ -327,6 +351,7 @@ public class MainWindowController extends Observable implements View,Initializab
 		
 	}
 	
+	//save a level
 	public void saveFile(){
 		FileChooser fc = new FileChooser();
 		fc.setTitle("save level");
@@ -355,7 +380,7 @@ public class MainWindowController extends Observable implements View,Initializab
 		}
 		
 	}
-	
+	//displays an error alert
 	private void errorAlert(String title,String content){
 		
 		Alert alert = new Alert(AlertType.ERROR);
@@ -366,6 +391,7 @@ public class MainWindowController extends Observable implements View,Initializab
 		
 	}
 	
+	//redirects to the program's java doc - currently N/A test only
 	public void openJavaDoc(){
 		
 		try {
@@ -376,7 +402,7 @@ public class MainWindowController extends Observable implements View,Initializab
 		}
 	}
 	
-	
+	//saves needed values before exit
 	public void safeExit()
 	{
 		if(timeline != null)
@@ -391,6 +417,7 @@ public class MainWindowController extends Observable implements View,Initializab
 		notifyObservers(params);
 	}
 	
+	//invoke GUI level displayer
 	@Override
 	public void display(LevelObject[][] levelData) {
 		if(levelData!=null){
@@ -402,6 +429,7 @@ public class MainWindowController extends Observable implements View,Initializab
 		}
 	}
 	
+	//invoke GUI to display finish screen
 	@Override
 	public void displayFinished()
 	{
@@ -417,6 +445,7 @@ public class MainWindowController extends Observable implements View,Initializab
 		
 	}
 	
+	
 	@Override
 	public void stop()
 	{
@@ -428,6 +457,15 @@ public class MainWindowController extends Observable implements View,Initializab
 		
 		//TODO display record ! 
 		
+	}
+
+	//set the label to current status
+	@Override
+	public void serverStatus(boolean status) {
+		if(status)
+		serverLabel.setText("On");
+		else
+			serverLabel.setText("Off");
 	}
 
 	

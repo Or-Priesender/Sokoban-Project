@@ -10,6 +10,9 @@ import model.data.level.LevelObject;
 import model.data.level.Player;
 import model.data.level.Wall;
 
+/*
+ * Saves to text file with any OutputStream
+ */
 public class MyTextLevelSaver implements LevelSaver {
 
 	@Override

@@ -17,6 +17,10 @@ import model.data.level.LevelObjectFactory;
 import model.data.level.Player;
 import model.data.level.Point2D;
 
+/*
+ * Loads a text file with any InputStream
+ */
+
 public class MyTextLevelLoader implements LevelLoader {
 
 	@Override    

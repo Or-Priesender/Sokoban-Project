@@ -5,7 +5,12 @@ import java.io.OutputStream;
 
 import javafx.scene.input.KeyCode;
 
+/*
+ * This class sets keys to the game. The default is the arrow keys.
+ */
+
 public class KeySetter {
+	
 	
 	public void setDefaultKeys(OutputStream out){
 		XMLEncoder encoder = new XMLEncoder(out);
@@ -19,6 +24,7 @@ public class KeySetter {
 		
 	}
 	
+	//get key code and write it to XML so it can be read later by the KeyDefinitions
 	public void setCustomKeys(OutputStream out,KeyCode up,KeyCode down, KeyCode right,KeyCode left){
 		XMLEncoder encoder = new XMLEncoder(out);
 		

@@ -6,6 +6,10 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 import controller.commands.Command;
 
+/*
+ * This controller can be used in any project. It executes general commands and blocks if the queue is empty.
+ * It runs in a separate thread.
+ */
 
 public class Controller {
 	

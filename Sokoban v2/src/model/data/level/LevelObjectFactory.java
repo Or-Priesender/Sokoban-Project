@@ -4,6 +4,10 @@ import java.util.HashMap;
 
 import model.data.files.Createable;
 
+/*
+ * This is a factory that creates a level object from given char. Used mostly for TextLevelLoader class
+ */
+
 public class LevelObjectFactory {
 	
 	private HashMap<Character, Createable> hm;

@@ -11,6 +11,11 @@ import java.util.Scanner;
 import javafx.beans.property.IntegerProperty;
 import model.data.level.LevelObject;
 
+/*
+ * This class gets commands from the client and pass it forward to the controller.
+ * It can use custom output and input.
+ */
+
 public class ClientHandler extends Observable implements View{
 
 	protected boolean stop = false;
@@ -18,6 +23,16 @@ public class ClientHandler extends Observable implements View{
 	protected OutputStream out;
 	protected InputStream in;
 	protected Scanner scan;
+	protected Thread thread;
+	PrintStream writer;
+	
+	
+	public ClientHandler()
+	{
+		this.in = System.in;
+		this.out = System.out;
+		writer = new PrintStream(System.out);
+	}
 	
 	public void startCustomIO(InputStream in,OutputStream out)
 	{
@@ -28,7 +43,7 @@ public class ClientHandler extends Observable implements View{
 		PrintStream writer = new PrintStream(out);
 	
 		
-		Thread t = new Thread(new Runnable() {
+		thread = new Thread(new Runnable() {
 			
 			public void run() {
 				while(!stop)
@@ -51,7 +66,7 @@ public class ClientHandler extends Observable implements View{
 				
 			}
 		});
-		t.start();
+		thread.start();
 		
 			
 			
@@ -70,9 +85,17 @@ public class ClientHandler extends Observable implements View{
 		try {
 			out.close();
 			in.close();
-			scan.close();
 			stop = true;
-		} catch (IOException e) {
+			
+			if(thread!=null)
+				thread.join();
+			
+			
+			if(scan!=null)
+			scan.close();
+			
+			
+		} catch (IOException | InterruptedException e) {
 			
 			e.printStackTrace();
 		}
@@ -93,7 +116,8 @@ public class ClientHandler extends Observable implements View{
 	@Override
 	public void displayFinished() {
 		
-		System.out.println("Level Finished !");
+		PrintStream writer = new PrintStream(out);
+		writer.println("Level Finished ! ");
 		
 	}
 
@@ -105,7 +129,23 @@ public class ClientHandler extends Observable implements View{
 	@Override
 	public void displayRecord(int record) {
 		
-		System.out.println(record);
+		writer.println("Record: "+record);
+		
+	}
+	@Override
+	public void serverStatus(boolean status) {
+		if(status){
+		writer.println("Server is on");
+		}
+		else 
+			writer.println("Server is off");
+	}
+
+	@Override
+	public void displayAlert(String title, String content) {
+		
+		writer.println(title);
+		writer.println(content);
 		
 	}
 

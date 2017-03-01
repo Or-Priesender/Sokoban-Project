@@ -4,6 +4,11 @@ import java.util.LinkedList;
 
 import view.View;
 
+/*
+ * This class is made for commands that need information from the View layer.
+ * This way more specific commands can inherit this class and instantiate a View of their choosing.
+ */
+
 public abstract class CommonViewCommand implements Command {
 
 	protected LinkedList<String> params;

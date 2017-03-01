@@ -9,21 +9,27 @@ import model.data.level.LevelObject;
 import model.data.level.Player;
 import model.data.level.Wall;
 
+/*
+ * This class draws a level to any OutputStream.
+ */
+
 public class CharLevelDisplayer extends LevelDisplayer {
 	
 	protected PrintStream writer;
-
+	
+	//if there is no given output stream, write to console
 	public CharLevelDisplayer(LevelObject[][] levelData)
 	{
 		super(levelData);
 		writer = new PrintStream(System.out);
 	}
-	
+	//if there is a given output stream, write to it
 	public CharLevelDisplayer(LevelObject[][] levelData,OutputStream out)
 	{
 		super(levelData);
 		this.writer = new PrintStream(out);
 	}
+	//draws the level at the current position
 	@Override
 	public void display() {
 		
@@ -44,6 +50,7 @@ public class CharLevelDisplayer extends LevelDisplayer {
 
 	}
 	
+	//internal function to convert LevelObject to Char
 	private char LevelObjectToChar(LevelObject o)
 	{
 		if (o instanceof Box)

@@ -7,6 +7,11 @@ import java.io.OutputStream;
 import model.data.level.Level;
 
 
+
+/*
+ * Saves an xml file with any InputStream
+ */
+
 public class MyXMLLevelSaver implements LevelSaver {
 
 	@Override

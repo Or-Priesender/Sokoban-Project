@@ -1,14 +1,15 @@
 package model.policy;
 
-
-
-
 import model.data.level.Box;
 import model.data.level.Destination;
 import model.data.level.Level;
 import model.data.level.LevelObject;
 import model.data.level.Point;
 import model.data.level.Wall;
+
+/*
+ * This class checks if it is possible to move in the desired direction according to Sokoban classic rules.
+ */
 
 public class MySokobanPolicy implements SokobanPolicy {
 
@@ -64,10 +65,6 @@ public class MySokobanPolicy implements SokobanPolicy {
 			//if player wants to move down
 		else if(direction.compareToIgnoreCase("down")==0)
 			{
-				
-				
-				
-				 
 				//in case player wants to go in a wall
 				if(map[p.getY()+1][p.getX()] instanceof Wall)
 					return false;

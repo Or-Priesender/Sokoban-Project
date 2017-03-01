@@ -10,7 +10,10 @@ import model.data.files.LevelSaverCreator;
 import model.data.files.ObjectLevelSaverCreator;
 import model.data.files.TextLevelSaverCreator;
 import model.data.files.XMLLevelSaverCreator;
-import model.data.level.Level;
+
+/*
+ * This class saves a level according to it's extension. You can inherit this class and set the HashMap accordingly.
+ */
 
 public class SaveFileCommand extends CommonModelCommand {
 
@@ -48,5 +51,15 @@ public class SaveFileCommand extends CommonModelCommand {
 				model.saveLevel(out, saver);
 		}
 	}
+
+	public HashMap<String, LevelSaverCreator> getMap() {
+		return map;
+	}
+
+	public void setMap(HashMap<String, LevelSaverCreator> map) {
+		this.map = map;
+	}
+	
+	
 
 }

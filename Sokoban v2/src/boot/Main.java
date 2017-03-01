@@ -7,7 +7,7 @@ package boot;
  * text level loader is reading the map alone, can be changed if needed.
  * char level displayer also displays map alone, can be changed if needed.
  * the CLI is currently familiar with up to 2 word commands.
- * level only handle the map, in the future : add other data members in txt loader and saver
+ * 
  * 
  */
 
@@ -54,8 +54,8 @@ public class Main extends Application {
 			
 			if(server == true)
 			{
-				System.out.println("running with server");
 				c.startServer(new ClientHandler(),port);
+				view.serverStatus(true);
 			}
 			
 			//set the music from outside the code and run it in loops
@@ -73,7 +73,7 @@ public class Main extends Application {
 						}
 					});
 					
-					player.setVolume(0.4);
+					player.setVolume(0.3);
 					player.play();
 					
 					}

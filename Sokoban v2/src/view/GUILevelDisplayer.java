@@ -14,6 +14,11 @@ import model.data.level.LevelObject;
 import model.data.level.Player;
 import model.data.level.Wall;
 
+/*
+ * This class displays images to the screen using JavaFx's Canvas class.
+ * Images are uploaded to the program via XML.
+ */
+
 public class GUILevelDisplayer extends Canvas {
 	
 	protected LevelObject[][] levelData;
@@ -21,10 +26,8 @@ public class GUILevelDisplayer extends Canvas {
 	protected StringProperty playerDownFileName,playerUpFileName,playerRightFileName,playerLeftFileName;
 	protected StringProperty startingPageFileName,levelFinishedFileName;
 	private Image wall,box,back,destination,player;
-	private Image playerDown,playerRight,playerLeft,playerUp;
 	private Image openPage,levelFinished;
 	protected double width,height;
-	
 	
 	
 	public GUILevelDisplayer() {
@@ -51,7 +54,7 @@ public class GUILevelDisplayer extends Canvas {
 		
 	
 	
-	
+	//displays the level itself
 	public void redraw() throws FileNotFoundException
 	{
 		
@@ -60,10 +63,7 @@ public class GUILevelDisplayer extends Canvas {
 			back = new Image(new FileInputStream(backFileName.get()));
 			destination = new Image(new FileInputStream(destinationFileName.get()));
 			player = new Image(new FileInputStream(playerFileName.get()));
-			playerDown = new Image(new FileInputStream(playerDownFileName.get()));
-			playerUp = new Image(new FileInputStream(playerUpFileName.get()));
-			playerLeft = new Image(new FileInputStream(playerLeftFileName.get()));
-			playerRight = new Image(new FileInputStream(playerRightFileName.get()));
+			
 			
 		
 		GraphicsContext gc = getGraphicsContext2D();
@@ -109,13 +109,18 @@ public class GUILevelDisplayer extends Canvas {
 		
 	}
 	
+	//display stage finished message
 	public void displayFinished()
 	{
 		try {
 			levelFinished = new Image(new FileInputStream(levelFinishedFileName.get()));
 			GraphicsContext gc = getGraphicsContext2D();
+			double w = getWidth()/6;
+			double h = getHeight()/8;
+			
 			if(levelFinished!=null){
-				gc.drawImage(levelFinished, -10, 150);
+				gc.drawImage(levelFinished, w, h);
+				//gc.drawImage(levelFinished, -10, 150);
 				
 			}
 		} catch (FileNotFoundException e) {
@@ -124,14 +129,13 @@ public class GUILevelDisplayer extends Canvas {
 		}
 	}
 
+	//displays the opening page
 	public void displayOpenPage()
 	{
 		try {
 			openPage = new Image(new FileInputStream(startingPageFileName.get()));
 			if(openPage!=null){
 			GraphicsContext gc = getGraphicsContext2D();
-			double w = getWidth();
-			double h = getHeight();
 			
 			gc.drawImage(openPage,0,0);
 			
@@ -142,13 +146,11 @@ public class GUILevelDisplayer extends Canvas {
 		}
 	}
 
+	//displays the level using the redraw method, also remembers last level drawn
 	public void display(LevelObject[][] levelData) throws FileNotFoundException {
 		setLevelData(levelData);
 		redraw();
 	}
-	
-	
-	
 	
 	
 	public String getLevelFinishedFileName() {
@@ -156,19 +158,10 @@ public class GUILevelDisplayer extends Canvas {
 	}
 
 
-
-
-
-
 	public void setLevelFinishedFileName(String levelFinishedFileName) {
 		
 		this.levelFinishedFileName.set(levelFinishedFileName);
 	}
-
-
-
-
-
 
 	public String getStartingPageFileName() {
 		return startingPageFileName.get();
@@ -262,21 +255,4 @@ public class GUILevelDisplayer extends Canvas {
 		this.levelData = levelData;
 
 	}
-
-	
-
-	
-	//TODO : do i need this?
-	/*
-	@Override
-	public void setLevel(Level lvl) {
-		this.lvl=lvl;
-		setLevelData(lvl.getMap());
-		cCol = lvl.getPlayerPos().getX();
-		cRow = lvl.getPlayerPos().getY();
-		
-	}
-*/
-	
-
 }

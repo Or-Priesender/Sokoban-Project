@@ -5,6 +5,9 @@ import controller.SokobanController;
 import model.Model;
 import view.View;
 
+/*
+ * This command performs a safe exit from all the layers (Model,View,Controller).
+ */
 
 public class ExitCommand extends CommonModelViewCommand {
 	

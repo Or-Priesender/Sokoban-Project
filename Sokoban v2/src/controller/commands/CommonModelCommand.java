@@ -1,6 +1,10 @@
 package controller.commands;
 
 import java.util.LinkedList;
+/*
+ * This class is made for commands that need information from the Model layer.
+ * This way more specific commands can inherit this class and instantiate a Model of their choosing.
+ */
 
 import model.Model;
 

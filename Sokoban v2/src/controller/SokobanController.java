@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
+
+import controller.commands.AlertCommand;
 import controller.commands.Command;
 import controller.commands.DisplayLevelCommand;
 import controller.commands.ExitCommand;
@@ -13,7 +15,6 @@ import controller.commands.FinishedLevelCommand;
 import controller.commands.LoadFileCommand;
 import controller.commands.MoveCommand;
 import controller.commands.SaveFileCommand;
-import controller.commands.TimeCommand;
 import controller.server.MyServer;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
@@ -23,6 +24,10 @@ import view.ClientHandler;
 import view.View;
 
 public class SokobanController implements Observer {
+	
+	/*
+	 * Controls the model and view layers, and has the ability to run with a server.
+	 */
 	
 	private View view;
 	private Model model;
@@ -57,7 +62,7 @@ public class SokobanController implements Observer {
 	}
 	@Override
 	public void update(Observable o, Object arg){
-		
+		//arg is a linked list containing a String that will extract the right command
 		LinkedList<String> params = (LinkedList<String>) arg;
 		String commandKey = params.removeFirst();
 		Command c = commands.get(commandKey);
@@ -65,6 +70,7 @@ public class SokobanController implements Observer {
 		c.setParams(params);		
 		controller.insertCommand(c);
 		
+		//needed to avoid Thread collision(JavaFx)
 		Platform.runLater(new Runnable() {
 			
 			@Override
@@ -77,6 +83,7 @@ public class SokobanController implements Observer {
 		}
 	}
 	
+	//starts the server with any ClientHandler
 	public void startServer(ClientHandler handler,int port)
 	{
 		handler.addObserver(this);
@@ -90,7 +97,7 @@ public class SokobanController implements Observer {
 			server.stop();
 		
 	}
-	
+	//stops all open threads created by this class
 	public void safeExit()
 	{
 		stopServer();
@@ -114,7 +121,7 @@ public class SokobanController implements Observer {
 	public void setModel(Model model) {
 		this.model = model;
 	}
-	
+	//initialize the HashMap
 	protected void initCommands(){
 		
 		try {
@@ -122,8 +129,8 @@ public class SokobanController implements Observer {
 	commands.put("display", new DisplayLevelCommand(model,view));
 	commands.put("load", new LoadFileCommand(model));
 	commands.put("save", new SaveFileCommand(model));
-	commands.put("time", new TimeCommand(model));
 	commands.put("finished", new FinishedLevelCommand(view));
+	commands.put("message", new AlertCommand(view));
 	commands.put("exit", new ExitCommand(model,view,this));
 	
 	} catch (FileNotFoundException e) {
