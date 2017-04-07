@@ -1,7 +1,6 @@
 package model.data.files;
 
 import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,7 +8,7 @@ import java.io.InputStream;
 import model.data.level.Level;
 
 /*
- * Loads an xml file with any InputStream
+ * Loads an XML file with any InputStream
  */
 
 public class MyXMLLevelLoader implements LevelLoader {

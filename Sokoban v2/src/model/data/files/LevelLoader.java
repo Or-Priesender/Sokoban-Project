@@ -3,8 +3,6 @@ package model.data.files;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Scanner;
 
 import model.data.level.Level;
 /**

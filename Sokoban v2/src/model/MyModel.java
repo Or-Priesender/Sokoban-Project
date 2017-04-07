@@ -5,12 +5,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Observable;
 
+import org.hibernate.sql.ordering.antlr.Factory;
 
-
-import javafx.application.Platform;
-import javafx.beans.property.IntegerProperty;
+import model.data.database.DataBaseManager;
+import model.data.database.SokobanDBManager;
+import model.data.database.User;
 import model.data.files.LevelLoader;
 import model.data.files.LevelSaver;
 import model.data.files.MyObjectLevelSaver;
@@ -18,7 +20,6 @@ import model.data.level.Level;
 import model.data.level.LevelObject;
 import model.data.level.Player;
 import model.data.level.Point;
-
 import model.policy.MySokobanPolicy;
 import model.policy.SokobanPolicy;
 
@@ -32,20 +33,23 @@ public class MyModel extends Observable implements Model {
 	protected SokobanPolicy p;
 	protected int steps;
 	protected int seconds;
+	DataBaseManager dbm;
 	
 
 	public MyModel()
 	{
 		lvl=null;
 		p=new MySokobanPolicy();
+		dbm = new SokobanDBManager();
 		
 	}
 	
 	
-	public MyModel(Level current, SokobanPolicy p) {
+	public MyModel(Level current, SokobanPolicy p,DataBaseManager dbm) {
 		this.lvl=current;
 		this.p = p;
 		steps= lvl.getSteps();
+		this.dbm = dbm;
 	}
 	
 	
@@ -59,6 +63,13 @@ public class MyModel extends Observable implements Model {
 	public Level getLevel() {
 		
 		return lvl;
+	}
+	
+	@Override
+	public List loadSessionFromDB() {
+		if(lvl!=null)
+			return dbm.getGameSessionTableForLevel(lvl);
+		else return null;
 	}
 	
 	//checks if the player finished the stage
@@ -75,7 +86,7 @@ public class MyModel extends Observable implements Model {
 		this.lvl = current;
 	}
 
-
+	
 	@Override
 	public void setPolicy(SokobanPolicy p) {
 		this.p=p;
@@ -198,6 +209,9 @@ public class MyModel extends Observable implements Model {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			finally{
+				dbm.closeDB();
+			}
 		}
 	
 		
@@ -223,6 +237,25 @@ public class MyModel extends Observable implements Model {
 				lvl.setTime(num);
 		}
 		
+		
+	}
+
+
+	@Override
+	public void saveToDB(String username) {
+		
+		User user = new User(username);
+		if(lvl != null){
+		dbm.saveUserAndLevel(user, lvl);
+		}
+		
+	}
+
+
+	@Override
+	public void updateTime(int seconds) {
+		if(lvl!=null)
+			lvl.setTime(seconds);
 		
 	}
 

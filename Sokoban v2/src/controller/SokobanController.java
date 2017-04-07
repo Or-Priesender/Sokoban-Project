@@ -13,8 +13,11 @@ import controller.commands.DisplayLevelCommand;
 import controller.commands.ExitCommand;
 import controller.commands.FinishedLevelCommand;
 import controller.commands.LoadFileCommand;
+import controller.commands.LoadSessionFromDBCommand;
 import controller.commands.MoveCommand;
 import controller.commands.SaveFileCommand;
+import controller.commands.SaveToDBCommand;
+import controller.commands.UpdateTimeCommand;
 import controller.server.MyServer;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
@@ -125,12 +128,15 @@ public class SokobanController implements Observer {
 	protected void initCommands(){
 		
 		try {
+	commands.put("LoadSessionDB", new LoadSessionFromDBCommand(model,view));
+	commands.put("time", new UpdateTimeCommand(model));
 	commands.put("move", new MoveCommand(model));
 	commands.put("display", new DisplayLevelCommand(model,view));
 	commands.put("load", new LoadFileCommand(model));
 	commands.put("save", new SaveFileCommand(model));
 	commands.put("finished", new FinishedLevelCommand(view));
 	commands.put("message", new AlertCommand(view));
+	commands.put("saveToDB", new SaveToDBCommand(model,view));
 	commands.put("exit", new ExitCommand(model,view,this));
 	
 	} catch (FileNotFoundException e) {

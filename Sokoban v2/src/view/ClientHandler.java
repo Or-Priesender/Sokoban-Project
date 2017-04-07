@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Scanner;
 import javafx.beans.property.IntegerProperty;
+import model.data.database.GameSession;
 import model.data.level.LevelObject;
 
 /*
@@ -148,7 +149,41 @@ public class ClientHandler extends Observable implements View{
 		writer.println(content);
 		
 	}
-
+	
+	@Override
+	public void displaySessionsList(List list) {
+		
+		List<GameSession> sessions = (List<GameSession>) list;
+		for(GameSession l : sessions)
+			System.out.println(l.getUsername() + " " + l.getLevelName() + " " + l.getSteps() + " " + l.getTime());
+		
+	}
+	
+	@Override
+	public void getUserDetails() {
+		
+		System.out.println("please insert username:");
+		Scanner s = new Scanner(in);
+		String username = "NA";
+		
+		if(s.hasNext())
+			username = s.next();
+		LinkedList<String> params = new LinkedList<String>();
+		params.add("saveToDB");
+		params.add(username);
+		setChanged();
+		notifyObservers(params);
+	}
+	
+	@Override
+	public void getCurrentLevelSession() {
+		
+		LinkedList<String> params = new LinkedList<String>();
+		params.add("LoadSessionDB");
+		setChanged();
+		notifyObservers(params);
+		
+	}
 
 	
 	

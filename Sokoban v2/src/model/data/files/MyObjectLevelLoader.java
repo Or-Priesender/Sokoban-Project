@@ -7,7 +7,7 @@ import java.io.ObjectInputStream;
 import model.data.level.Level;
 
 /*
- * Loades an object file with any InputStream
+ * Loads an object file with any InputStream
  */
 
 public class MyObjectLevelLoader implements LevelLoader {

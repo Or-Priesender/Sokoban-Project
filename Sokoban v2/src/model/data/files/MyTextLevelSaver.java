@@ -2,6 +2,7 @@ package model.data.files;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 
 import model.data.level.Box;
 import model.data.level.Destination;
@@ -18,11 +19,14 @@ public class MyTextLevelSaver implements LevelSaver {
 	@Override
 	public void saveLevel(Level lvl, OutputStream out) throws IOException {
 		
+		out.write(lvl.getLevelName().getBytes());
+		out.write(System.getProperty("line.separator").getBytes());
+		
 		for(int i=0;i<lvl.getHeight();i++)
 		{
 			for(int j=0;j<lvl.getWidth();j++) 
 			{
-				out.write(LevelObjectToChar(lvl.getMap()[i][j]));
+				out.write((LevelObjectToChar(lvl.getMap()[i][j])));
 			}
 			
 		

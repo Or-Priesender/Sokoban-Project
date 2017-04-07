@@ -2,7 +2,15 @@ package model.data.level;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import model.data.database.User;
 import model.policy.SokobanPolicy;
 
 public class Level implements Serializable{
@@ -10,8 +18,12 @@ public class Level implements Serializable{
 	
 	private LevelObject[][] map;
 	private int difficulty;
+	@Column(name="time")
 	private int time;
+	@Column(name="steps")
 	private int steps;
+	@Id
+	@Column(name="level_name")
 	private String levelName;
 	private int width;
 	private int height;
@@ -19,6 +31,7 @@ public class Level implements Serializable{
 	private int boxOnDestinationCounter;
 	private Player player1;
 	private Point playerPos;
+	
 	
 	public Level()
 	{
@@ -31,8 +44,14 @@ public class Level implements Serializable{
 		player1=null;
 		boxOnDestinationCounter = 0;
 		destinationCounter=0;
+		
+		
+		
 	}
 	
+	
+	
+
 	public Level(Level lvl)
 	{
 		this.difficulty = lvl.getDifficulty();
@@ -44,6 +63,20 @@ public class Level implements Serializable{
 		this.playerPos = lvl.getPlayerPos();
 		this.boxOnDestinationCounter = lvl.getBoxOnDestinationCounter();
 		this.destinationCounter=lvl.getDestinationCounter();
+	}
+	
+	@Override
+	public boolean equals(Object arg0) {
+		Level l = (Level) arg0;
+		if(this.levelName.compareTo(l.getLevelName())==0)
+			return true;
+		else return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		return levelName.hashCode();
+
 	}
 	
 	public boolean isFinished()
@@ -118,6 +151,17 @@ public class Level implements Serializable{
 		
 	}
 	
+	/*
+	
+	public Set<User> getSolvedBy() {
+		return solvedBy;
+	}
+
+	public void setSolvedBy(Set<User> solvedBy) {
+		this.solvedBy = solvedBy;
+	}
+	*/
+
 	public LevelObject[][] getMap() {
 		return map;
 	}

@@ -3,8 +3,10 @@ package model;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 import javafx.beans.property.IntegerProperty;
+import model.data.database.User;
 import model.data.files.LevelLoader;
 import model.data.files.LevelSaver;
 import model.data.level.Level;
@@ -26,6 +28,9 @@ public interface Model {
 	public void checkRecord(int num);
 	public int getSteps();
 	public int getTime();
+	public void updateTime(int seconds);
+	public void saveToDB(String username);
+	public List loadSessionFromDB();
 	
 	
 }

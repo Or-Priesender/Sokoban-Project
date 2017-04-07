@@ -23,19 +23,32 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.data.database.GameSession;
 import model.data.level.LevelObject;
 
 /*
@@ -43,6 +56,7 @@ import model.data.level.LevelObject;
  */
 
 public class MainWindowController extends Observable implements View,Initializable{
+	
 	
 	@FXML
 	GUILevelDisplayer levelDisplayer;
@@ -52,13 +66,11 @@ public class MainWindowController extends Observable implements View,Initializab
 	
 	private IntegerProperty seconds;
 	private Timeline timeline;
+	
 	private boolean firstLaunch = true;
 	private boolean gameInProgress = false;
 	private boolean firstMove = true;
 	private KeyDefinitions currentDef;
-	
-	
-			 
 	
 	
 	@Override
@@ -333,10 +345,7 @@ public class MainWindowController extends Observable implements View,Initializab
 					
 					gameInProgress = true;
 					firstMove = true;
-					
-					
-				
-				}
+					}
 				else
 				{
 					errorAlert("Error loading file","could not load file, please try again.");
@@ -441,10 +450,102 @@ public class MainWindowController extends Observable implements View,Initializab
 		gameInProgress = false;
 		levelDisplayer.display(levelDisplayer.getLevelData());
 		levelDisplayer.displayFinished();
+		String steps = stepsLabel.getText();
+		String secs = timeLabel.getText();
+		//updates the level with the current seconds
+		updateTime();
+		
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				getUserDetails();
+				
+			}
+		});
+		
+		
 		} catch(FileNotFoundException e) { errorAlert("File not found exception", "in MainWindowController.displayFinished");} 
 		
 	}
 	
+	@Override
+	public void getCurrentLevelSession(){
+		LinkedList<String> params = new LinkedList<String>();
+		
+		params.add("LoadSessionDB");
+		setChanged();
+		notifyObservers(params);
+	}
+	
+	@Override
+	public void displaySessionsList(List list) {
+		//TODO add display for table !! 
+			if(list == null){
+			displayAlert("Error", "No Data To Show");
+			return;
+		}		
+		
+		try{
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("boot/ScoreBoard.fxml"));
+			Scene scene = new Scene(loader.load(),600,400);
+			ScoreBoardController score = loader.getController();
+			score.setTable(list);
+			Platform.runLater(new Runnable() {
+				
+				@Override
+				public void run() {
+					Stage stage = new Stage();
+					stage.setTitle("Score Board");
+					stage.setScene(scene);
+					stage.show();
+				}
+			});
+			
+			
+			
+			} catch(IOException e){
+				e.printStackTrace();
+			}
+			
+		
+		
+		
+	}
+	
+	
+	private void updateTime(){
+		LinkedList<String> params = new LinkedList<String>();
+		params.add("time");
+		params.add(timeLabel.getText());
+		setChanged();
+		notifyObservers(params);
+	}
+	@Override
+	public void getUserDetails(){
+			
+		TextInputDialog dialog = new TextInputDialog();
+		dialog.setContentText("Please insert username");
+		dialog.setTitle("Submit score");
+		dialog.setHeaderText("Join the scoreboard");
+		
+		Optional<String> result = dialog.showAndWait();
+		if(result.isPresent()){
+			
+			LinkedList<String> params = new LinkedList<String>();
+			params.add("saveToDB");
+			params.add(result.get());
+			params.add(timeLabel.getText());
+			params.add(stepsLabel.getText());
+			setChanged();
+			notifyObservers(params);
+		}
+	}
+	
+	
+	
+		
 	
 	@Override
 	public void stop()
@@ -463,7 +564,7 @@ public class MainWindowController extends Observable implements View,Initializab
 	@Override
 	public void serverStatus(boolean status) {
 		if(status)
-		serverLabel.setText("On");
+			serverLabel.setText("On");
 		else
 			serverLabel.setText("Off");
 	}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping 3.0DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="model.data.level">
+   <class name="Level" table="LEVELS">
+      <meta attribute="class-description">
+         This class contains the level details. 
+      </meta>
+      <id name="levelName" type="string" column="level_name">
+      </id>
+	 
+      <property name="difficulty" column="level_difficulty" type="int"/>
+      <property name="steps" column="steps" type="int"/>
+      <property name="time" column="time" type="int"/>
+	
+	
+   </class>
+</hibernate-mapping>

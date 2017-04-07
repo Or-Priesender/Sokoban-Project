@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+   <session-factory>
+   <property name="hibernate.dialect">
+      org.hibernate.dialect.SQLServerDialect
+   </property>
+   <property name="hibernate.connection.driver_class"> com.microsoft.sqlserver.jdbc.SQLServerDriver </property>
+  
+
+   <!-- Assume test is the database name -->
+   <property name="hibernate.connection.url">
+     <!--  jdbc:microsoft:sqlserver://localhost/;DatabaseName=test;  -->
+      jdbc:sqlserver://127.0.0.1;instance=ORPRIESENDER-HP;DatabaseName=Sokoban;
+   </property>
+  	 <property name="hibernate.connection.username">
+      orpris12
+   </property>
+   <property name="hibernate.connection.password">
+      kaki121191
+   </property>
+   
+    <!-- List of XML mapping files -->
+	  <mapping resource="model/data/level/Level.hbm.xml"/> 
+	  <mapping resource="model/data/database/User.hbm.xml"/> 
+	 <mapping resource="model/data/database/GameSession.hbm.xml"/>
+	  
+
+
+</session-factory>
+</hibernate-configuration>

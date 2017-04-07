@@ -41,7 +41,6 @@ public class Main extends Application {
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			BorderPane root = (BorderPane)fxmlLoader.load(getClass().getResource("MainWindow.fxml").openStream());
-			
 			MainWindowController view = (MainWindowController) fxmlLoader.getController();
 			MyModel model = new MyModel();
 			SokobanController c = new SokobanController(view,model);

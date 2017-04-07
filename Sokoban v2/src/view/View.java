@@ -1,5 +1,7 @@
 package view;
 
+import java.util.List;
+
 import javafx.beans.property.IntegerProperty;
 import model.data.level.LevelObject;
 
@@ -20,6 +22,12 @@ public interface View {
 	public void stop();
 	
 	public void displayAlert(String title,String content);
+	
+	public void getUserDetails();
+	
+	public void getCurrentLevelSession();
+	
+	public void displaySessionsList(List list);
 	
 
 	

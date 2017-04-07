@@ -2,15 +2,10 @@ package model.data.files;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Scanner;
-
 import model.data.level.Level;
 import model.data.level.LevelObject;
 import model.data.level.LevelObjectFactory;
@@ -31,14 +26,19 @@ public class MyTextLevelLoader implements LevelLoader {
 		Level newLevel = new Level();
 		
 		BufferedInputStream bi = new BufferedInputStream(in);
-		BufferedReader r = new BufferedReader(new InputStreamReader(bi,StandardCharsets.UTF_8));
+		BufferedReader r = new BufferedReader(new InputStreamReader(bi));
 		
 		LevelObjectFactory fac = new LevelObjectFactory();
 		String line = null;
+		
 		LevelObject[][] map = null;
 		
 		int height=0;
 		int width=0;
+		
+		String levelName = r.readLine();
+		newLevel.setLevelName(levelName);
+		
 		r.mark(1000);
 		do
 		{
@@ -117,7 +117,6 @@ public class MyTextLevelLoader implements LevelLoader {
 		r.close();
 		
 		
-		//in the future : add algorithm to solve stage and determine steps,time etc.
 		
 				
 	

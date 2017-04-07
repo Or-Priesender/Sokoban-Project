@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping 3.0DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="model.data.database">
+   <class name="GameSession" table="GameSessions">
+      <meta attribute="class-description">
+         This class contains the users and levels solved by them in details. 
+      </meta>
+      <id name="sessionId" type="int" column="sessionId">
+     	 <generator class="native"/>
+      </id>
+      <property name="userId" column="userId" type="int"/>
+      <property name="levelName" column="level_name" type="string"/>
+     <property name="username" column="username" type="string"/>
+      <property name="steps" column="steps" type="int"/>
+      <property name="time" column="time" type="int"/>
+	
+	
+   </class>
+</hibernate-mapping>

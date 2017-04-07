@@ -55,11 +55,14 @@
             <Label fx:id="stepsLabel" text="Status" />
 			<Label text="Time:" />
             <Label fx:id="timeLabel" text="Second"/>
+			<Label text="Server status:"/>
+			<Label fx:id="serverLabel" text="Server Status:"/>
+			<Button layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onAction="#getCurrentLevelSession" prefHeight="25.0" prefWidth="60.0" text="ScoreBoard" />
          </children>
       </HBox>
    </bottom>
    <center>
-      <GUILevelDisplayer fx:id="levelDisplayer" height="400" width="600.0" backFileName="./resources/Back.png" boxFileName="./resources/Box.png" destinationFileName="./resources/Destination.png"  startingPageFileName="./resources/openPage.png" playerDownFileName="./resources/PlayerDown.png" playerFileName="./resources/PlayerDown.png" playerLeftFileName="./resources/PlayerLeft.png" playerRightFileName="./resources/PlayerRight.png" playerUpFileName="./resources/PlayerUp.png" wallFileName="./resources/Wall.png" levelFinishedFileName="./resources/GameFinished.png"  BorderPane.alignment="CENTER">
+      <GUILevelDisplayer fx:id="levelDisplayer" height="400" width="600.0" backFileName="./resources/Back.png" boxFileName="./resources/Box.png" destinationFileName="./resources/Destination.png"  startingPageFileName="./resources/YellowOpenPage.png" playerDownFileName="./resources/PlayerDown.png" playerFileName="./resources/PlayerDown.png" playerLeftFileName="./resources/PlayerLeft.png" playerRightFileName="./resources/PlayerRight.png" playerUpFileName="./resources/PlayerUp.png" wallFileName="./resources/Wall.png" levelFinishedFileName="./resources/GameFinished.png"  BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" left="10" right="10.0" top="10.0" />
          </BorderPane.margin></GUILevelDisplayer>

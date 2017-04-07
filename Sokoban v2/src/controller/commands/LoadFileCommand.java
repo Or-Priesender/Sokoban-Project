@@ -1,5 +1,6 @@
 package controller.commands;
 
+import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -49,8 +50,7 @@ public class LoadFileCommand extends CommonModelCommand {
 		
 		try {
 			String filename = params.removeFirst();	
-	
-			in = new FileInputStream(filename);
+		in = new FileInputStream(filename);
 			//gets the last 3 letters of the filename (it's file extension)
 			LevelLoaderCreator c = map.get(filename.substring(filename.length()-3));
 			if (c!=null){
