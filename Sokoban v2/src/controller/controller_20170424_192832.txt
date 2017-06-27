@@ -1,0 +1,4 @@
+WARNING - 19:28:32: First conversion pass
+WARNING - 19:28:33: Second pass : generating package usages
+WARNING - 19:28:33: Saving uml file /resource/Sokoban v2/src/controller/controller.uml
+WARNING - 19:28:33: Uml file /resource/Sokoban v2/src/controller/controller.uml saved

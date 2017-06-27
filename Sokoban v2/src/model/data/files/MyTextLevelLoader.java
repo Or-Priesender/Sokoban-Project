@@ -5,7 +5,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
+
+import model.data.level.Box;
+import model.data.level.Destination;
 import model.data.level.Level;
 import model.data.level.LevelObject;
 import model.data.level.LevelObjectFactory;
@@ -52,37 +54,7 @@ public class MyTextLevelLoader implements LevelLoader {
 		}while(line != null);
 		
 		r.reset();
-		//line = r.readLine();
-/*		if(line != null)
-		{
-			char[] size = line.toCharArray();
-			
-				while(size[k]!=' ')
-				{
-					height+=Character.getNumericValue(size[k]);
-					k++;
-					if(size[k]==' ')
-						break;
-					height*=10;
-					
-				}
-				k++;
-				while(size[k]!=' ')
-				{
-					width+=Character.getNumericValue(size[k]);
-					k++;
-					if(k==size.length)
-						break;
-					if(size[k]==' ')
-						break;
-					width*=10;
-				}
-			
-			newLevel.setHeight(height);
-			newLevel.setWidth(width);
-			map = new LevelObject[height][width];
-		}
-		else return null;*/
+
 		
 		newLevel.setHeight(height);
 		newLevel.setWidth(width);
@@ -102,24 +74,22 @@ public class MyTextLevelLoader implements LevelLoader {
 						newLevel.setPlayer1((Player)fac.getObject(seperated[j], new Point2D(i,j)));
 					}
 					
-					else if(seperated[j]=='o')
+					else if(seperated[j]=='o'){
 						newLevel.setDestinationCounter(newLevel.getDestinationCounter()+1);
-					map[i][j]= fac.getObject(seperated[j],new Point2D(i,j));
+						
+					}
+					map[i][j] = fac.getObject(seperated[j],new Point2D(i,j));
+					if(map[i][j] instanceof Box) newLevel.addBox((Box)map[i][j]);
+					else if(map[i][j] instanceof Destination) newLevel.addDestination((Destination) map[i][j]);
 			    }
 		    }
 			
 		}
 		
 		newLevel.setMap(map);
-		
 		in.close();
 		bi.close();
 		r.close();
-		
-		
-		
-				
-	
 		return newLevel;
 	}
 

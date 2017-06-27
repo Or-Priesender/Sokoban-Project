@@ -29,11 +29,11 @@ public class MoveCommand extends CommonModelCommand {
 	
 	@Override
 	public  void execute() {
-		
-		String direction = params.removeFirst();
-		
-		if(direction !=null)
-			model.move(direction);
+		if(!params.isEmpty()){
+			String direction = params.removeFirst();
+			if(direction !=null)
+				model.move(direction);
+		}
 		
 	}
 

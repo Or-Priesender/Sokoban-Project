@@ -124,7 +124,7 @@ public class GUILevelDisplayer extends Canvas {
 				
 			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -141,7 +141,7 @@ public class GUILevelDisplayer extends Canvas {
 			
 			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}

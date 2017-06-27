@@ -1,14 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.8.0_121" class="java.beans.XMLDecoder">
- <object class="model.data.level.Level">
+<java version="1.8.0_131" class="java.beans.XMLDecoder">
+ <object class="model.data.level.Level" id="Level0">
+  <void property="boxes">
+   <void method="add">
+    <object class="model.data.level.Box" id="Box0">
+     <void property="position">
+      <void property="x">
+       <int>10</int>
+      </void>
+      <void property="y">
+       <int>2</int>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="model.data.level.Box" id="Box1">
+     <void property="position">
+      <void property="x">
+       <int>4</int>
+      </void>
+      <void property="y">
+       <int>3</int>
+      </void>
+     </void>
+    </object>
+   </void>
+  </void>
   <void property="destinationCounter">
-   <int>8</int>
+   <int>2</int>
+  </void>
+  <void property="destinations">
+   <void method="add">
+    <object class="model.data.level.Destination" id="Destination0">
+     <void property="position">
+      <void property="x">
+       <int>4</int>
+      </void>
+      <void property="y">
+       <int>4</int>
+      </void>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="model.data.level.Destination" id="Destination1">
+     <void property="position">
+      <void property="x">
+       <int>9</int>
+      </void>
+      <void property="y">
+       <int>4</int>
+      </void>
+     </void>
+    </object>
+   </void>
   </void>
   <void property="height">
-   <int>14</int>
+   <int>6</int>
+  </void>
+  <void property="levelName">
+   <string>level1</string>
   </void>
   <void property="map">
-   <array class="[Lmodel.data.level.LevelObject;" length="14">
+   <array class="[Lmodel.data.level.LevelObject;" length="6">
     <void index="0">
      <array class="model.data.level.LevelObject" length="14">
       <void index="0">
@@ -41,8 +96,53 @@
         </void>
        </object>
       </void>
-      <void index="9">
+      <void index="4">
        <object class="model.data.level.Wall" id="Wall3">
+        <void property="position">
+         <void property="x">
+          <int>4</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="5">
+       <object class="model.data.level.Wall" id="Wall4">
+        <void property="position">
+         <void property="x">
+          <int>5</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="6">
+       <object class="model.data.level.Wall" id="Wall5">
+        <void property="position">
+         <void property="x">
+          <int>6</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="7">
+       <object class="model.data.level.Wall" id="Wall6">
+        <void property="position">
+         <void property="x">
+          <int>7</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="8">
+       <object class="model.data.level.Wall" id="Wall7">
+        <void property="position">
+         <void property="x">
+          <int>8</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="9">
+       <object class="model.data.level.Wall" id="Wall8">
         <void property="position">
          <void property="x">
           <int>9</int>
@@ -51,7 +151,7 @@
        </object>
       </void>
       <void index="10">
-       <object class="model.data.level.Wall" id="Wall4">
+       <object class="model.data.level.Wall" id="Wall9">
         <void property="position">
          <void property="x">
           <int>10</int>
@@ -60,7 +160,7 @@
        </object>
       </void>
       <void index="11">
-       <object class="model.data.level.Wall" id="Wall5">
+       <object class="model.data.level.Wall" id="Wall10">
         <void property="position">
          <void property="x">
           <int>11</int>
@@ -69,19 +169,10 @@
        </object>
       </void>
       <void index="12">
-       <object class="model.data.level.Wall" id="Wall6">
+       <object class="model.data.level.Wall" id="Wall11">
         <void property="position">
          <void property="x">
           <int>12</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="13">
-       <object class="model.data.level.Wall" id="Wall7">
-        <void property="position">
-         <void property="x">
-          <int>13</int>
          </void>
         </void>
        </object>
@@ -91,55 +182,19 @@
     <void index="1">
      <array class="model.data.level.LevelObject" length="14">
       <void index="0">
-       <object class="model.data.level.Wall" id="Wall8">
-        <void property="position">
-         <void property="y">
-          <int>1</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="4">
-       <object class="model.data.level.Wall" id="Wall9">
-        <void property="position">
-         <void property="x">
-          <int>4</int>
-         </void>
-         <void property="y">
-          <int>1</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="5">
-       <object class="model.data.level.Wall" id="Wall10">
-        <void property="position">
-         <void property="x">
-          <int>5</int>
-         </void>
-         <void property="y">
-          <int>1</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="6">
-       <object class="model.data.level.Wall" id="Wall11">
-        <void property="position">
-         <void property="x">
-          <int>6</int>
-         </void>
-         <void property="y">
-          <int>1</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="7">
        <object class="model.data.level.Wall" id="Wall12">
         <void property="position">
+         <void property="y">
+          <int>1</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="3">
+       <object class="model.data.level.Player" id="Player0">
+        <void property="position">
          <void property="x">
-          <int>7</int>
+          <int>3</int>
          </void>
          <void property="y">
           <int>1</int>
@@ -147,23 +202,11 @@
         </void>
        </object>
       </void>
-      <void index="8">
+      <void index="12">
        <object class="model.data.level.Wall" id="Wall13">
         <void property="position">
          <void property="x">
-          <int>8</int>
-         </void>
-         <void property="y">
-          <int>1</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="13">
-       <object class="model.data.level.Wall" id="Wall14">
-        <void property="position">
-         <void property="x">
-          <int>13</int>
+          <int>12</int>
          </void>
          <void property="y">
           <int>1</int>
@@ -176,19 +219,19 @@
     <void index="2">
      <array class="model.data.level.LevelObject" length="14">
       <void index="0">
+       <object class="model.data.level.Wall" id="Wall14">
+        <void property="position">
+         <void property="y">
+          <int>2</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="3">
        <object class="model.data.level.Wall" id="Wall15">
         <void property="position">
-         <void property="y">
-          <int>2</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="6">
-       <object class="model.data.level.Box" id="Box0">
-        <void property="position">
          <void property="x">
-          <int>6</int>
+          <int>3</int>
          </void>
          <void property="y">
           <int>2</int>
@@ -196,25 +239,14 @@
         </void>
        </object>
       </void>
-      <void index="8">
-       <object class="model.data.level.Box">
-        <void property="position">
-         <object class="model.data.level.Point">
-          <void property="x">
-           <int>8</int>
-          </void>
-          <void property="y">
-           <int>2</int>
-          </void>
-         </object>
-        </void>
-       </object>
+      <void index="10">
+       <object idref="Box0"/>
       </void>
-      <void index="13">
+      <void index="12">
        <object class="model.data.level.Wall" id="Wall16">
         <void property="position">
          <void property="x">
-          <int>13</int>
+          <int>12</int>
          </void>
          <void property="y">
           <int>2</int>
@@ -235,104 +267,14 @@
         </void>
        </object>
       </void>
-      <void index="3">
-       <object class="model.data.level.Destination" id="Destination0">
-        <void property="position">
-         <void property="x">
-          <int>3</int>
-         </void>
-         <void property="y">
-          <int>3</int>
-         </void>
-        </void>
-       </object>
-      </void>
       <void index="4">
-       <object class="model.data.level.Destination" id="Destination1">
-        <void property="position">
-         <void property="x">
-          <int>4</int>
-         </void>
-         <void property="y">
-          <int>3</int>
-         </void>
-        </void>
-       </object>
+       <object idref="Box1"/>
       </void>
-      <void index="5">
-       <object class="model.data.level.Box" id="Box1">
-        <void property="position">
-         <void property="x">
-          <int>5</int>
-         </void>
-         <void property="y">
-          <int>3</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="6">
+      <void index="12">
        <object class="model.data.level.Wall" id="Wall18">
         <void property="position">
          <void property="x">
-          <int>6</int>
-         </void>
-         <void property="y">
-          <int>3</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="8">
-       <object class="model.data.level.Destination">
-        <void property="position">
-         <object class="model.data.level.Point">
-          <void property="x">
-           <int>8</int>
-          </void>
-          <void property="y">
-           <int>3</int>
-          </void>
-         </object>
-        </void>
-       </object>
-      </void>
-      <void index="9">
-       <object class="model.data.level.Player" id="Player0">
-        <void property="position">
-         <object class="model.data.level.Point" id="Point0">
-          <void property="x">
-           <int>9</int>
-          </void>
-          <void property="y">
-           <int>3</int>
-          </void>
-         </object>
-        </void>
-        <void property="wasDestination">
-         <boolean>true</boolean>
-        </void>
-       </object>
-      </void>
-      <void index="11">
-       <object class="model.data.level.Box">
-        <void property="position">
-         <object class="model.data.level.Point">
-          <void property="x">
-           <int>11</int>
-          </void>
-          <void property="y">
-           <int>3</int>
-          </void>
-         </object>
-        </void>
-       </object>
-      </void>
-      <void index="13">
-       <object class="model.data.level.Wall" id="Wall19">
-        <void property="position">
-         <void property="x">
-          <int>13</int>
+          <int>12</int>
          </void>
          <void property="y">
           <int>3</int>
@@ -345,7 +287,7 @@
     <void index="4">
      <array class="model.data.level.LevelObject" length="14">
       <void index="0">
-       <object class="model.data.level.Wall" id="Wall20">
+       <object class="model.data.level.Wall" id="Wall19">
         <void property="position">
          <void property="y">
           <int>4</int>
@@ -353,32 +295,11 @@
         </void>
        </object>
       </void>
-      <void index="1">
-       <object class="model.data.level.Wall" id="Wall21">
-        <void property="position">
-         <void property="x">
-          <int>1</int>
-         </void>
-         <void property="y">
-          <int>4</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="3">
-       <object class="model.data.level.Destination" id="Destination2">
-        <void property="position">
-         <void property="x">
-          <int>3</int>
-         </void>
-         <void property="y">
-          <int>4</int>
-         </void>
-        </void>
-       </object>
+      <void index="4">
+       <object idref="Destination0"/>
       </void>
       <void index="6">
-       <object class="model.data.level.Wall" id="Wall22">
+       <object class="model.data.level.Wall" id="Wall20">
         <void property="position">
          <void property="x">
           <int>6</int>
@@ -389,49 +310,14 @@
         </void>
        </object>
       </void>
-      <void index="7">
-       <object class="model.data.level.Box" id="Box2">
-        <void property="position">
-         <void property="x">
-          <int>7</int>
-         </void>
-         <void property="y">
-          <int>4</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="8">
-       <object class="model.data.level.Destination">
-        <void property="position">
-         <object class="model.data.level.Point">
-          <void property="x">
-           <int>8</int>
-          </void>
-          <void property="y">
-           <int>4</int>
-          </void>
-         </object>
-        </void>
-       </object>
+      <void index="9">
+       <object idref="Destination1"/>
       </void>
       <void index="12">
-       <object class="model.data.level.Wall" id="Wall23">
+       <object class="model.data.level.Wall" id="Wall21">
         <void property="position">
          <void property="x">
           <int>12</int>
-         </void>
-         <void property="y">
-          <int>4</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="13">
-       <object class="model.data.level.Wall" id="Wall24">
-        <void property="position">
-         <void property="x">
-          <int>13</int>
          </void>
          <void property="y">
           <int>4</int>
@@ -444,8 +330,20 @@
     <void index="5">
      <array class="model.data.level.LevelObject" length="14">
       <void index="0">
-       <object class="model.data.level.Wall" id="Wall25">
+       <object class="model.data.level.Wall" id="Wall22">
         <void property="position">
+         <void property="y">
+          <int>5</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="1">
+       <object class="model.data.level.Wall" id="Wall23">
+        <void property="position">
+         <void property="x">
+          <int>1</int>
+         </void>
          <void property="y">
           <int>5</int>
          </void>
@@ -453,329 +351,160 @@
        </object>
       </void>
       <void index="2">
-       <object class="model.data.level.Destination" id="Destination3">
+       <object class="model.data.level.Wall" id="Wall24">
         <void property="position">
          <void property="x">
           <int>2</int>
          </void>
          <void property="y">
           <int>5</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="4">
-       <object class="model.data.level.Box" id="Box3">
-        <void property="position">
-         <void property="x">
-          <int>4</int>
-         </void>
-         <void property="y">
-          <int>5</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="5">
-       <object class="model.data.level.Wall" id="Wall26">
-        <void property="position">
-         <void property="x">
-          <int>5</int>
-         </void>
-         <void property="y">
-          <int>5</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="6">
-       <object class="model.data.level.Box">
-        <void property="position">
-         <object class="model.data.level.Point">
-          <void property="x">
-           <int>6</int>
-          </void>
-          <void property="y">
-           <int>5</int>
-          </void>
-         </object>
-        </void>
-       </object>
-      </void>
-      <void index="7">
-       <object class="model.data.level.Destination">
-        <void property="position">
-         <object class="model.data.level.Point">
-          <void property="x">
-           <int>7</int>
-          </void>
-          <void property="y">
-           <int>5</int>
-          </void>
-         </object>
-        </void>
-       </object>
-      </void>
-      <void index="11">
-       <object class="model.data.level.Wall" id="Wall27">
-        <void property="position">
-         <void property="x">
-          <int>11</int>
-         </void>
-         <void property="y">
-          <int>5</int>
-         </void>
-        </void>
-       </object>
-      </void>
-     </array>
-    </void>
-    <void index="6">
-     <array class="model.data.level.LevelObject" length="14">
-      <void index="0">
-       <object class="model.data.level.Wall" id="Wall28">
-        <void property="position">
-         <void property="y">
-          <int>6</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="1">
-       <object class="model.data.level.Wall" id="Wall29">
-        <void property="position">
-         <void property="x">
-          <int>1</int>
-         </void>
-         <void property="y">
-          <int>6</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="5">
-       <object class="model.data.level.Wall" id="Wall30">
-        <void property="position">
-         <void property="x">
-          <int>5</int>
-         </void>
-         <void property="y">
-          <int>6</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="8">
-       <object class="model.data.level.Box">
-        <void property="position">
-         <object class="model.data.level.Point">
-          <void property="x">
-           <int>8</int>
-          </void>
-          <void property="y">
-           <int>6</int>
-          </void>
-         </object>
-        </void>
-       </object>
-      </void>
-      <void index="10">
-       <object class="model.data.level.Wall" id="Wall31">
-        <void property="position">
-         <void property="x">
-          <int>10</int>
-         </void>
-         <void property="y">
-          <int>6</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="11">
-       <object class="model.data.level.Wall" id="Wall32">
-        <void property="position">
-         <void property="x">
-          <int>11</int>
-         </void>
-         <void property="y">
-          <int>6</int>
-         </void>
-        </void>
-       </object>
-      </void>
-     </array>
-    </void>
-    <void index="7">
-     <array class="model.data.level.LevelObject" length="14">
-      <void index="0">
-       <object class="model.data.level.Wall" id="Wall33">
-        <void property="position">
-         <void property="y">
-          <int>7</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="4">
-       <object class="model.data.level.Wall" id="Wall34">
-        <void property="position">
-         <void property="x">
-          <int>4</int>
-         </void>
-         <void property="y">
-          <int>7</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="7">
-       <object class="model.data.level.Wall" id="Wall35">
-        <void property="position">
-         <void property="x">
-          <int>7</int>
-         </void>
-         <void property="y">
-          <int>7</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="8">
-       <object class="model.data.level.Wall" id="Wall36">
-        <void property="position">
-         <void property="x">
-          <int>8</int>
-         </void>
-         <void property="y">
-          <int>7</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="9">
-       <object class="model.data.level.Wall" id="Wall37">
-        <void property="position">
-         <void property="x">
-          <int>9</int>
-         </void>
-         <void property="y">
-          <int>7</int>
-         </void>
-        </void>
-       </object>
-      </void>
-     </array>
-    </void>
-    <void index="8">
-     <array class="model.data.level.LevelObject" length="14">
-      <void index="0">
-       <object class="model.data.level.Wall" id="Wall38">
-        <void property="position">
-         <void property="y">
-          <int>8</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="1">
-       <object class="model.data.level.Wall" id="Wall39">
-        <void property="position">
-         <void property="x">
-          <int>1</int>
-         </void>
-         <void property="y">
-          <int>8</int>
-         </void>
-        </void>
-       </object>
-      </void>
-      <void index="2">
-       <object class="model.data.level.Wall" id="Wall40">
-        <void property="position">
-         <void property="x">
-          <int>2</int>
-         </void>
-         <void property="y">
-          <int>8</int>
          </void>
         </void>
        </object>
       </void>
       <void index="3">
-       <object class="model.data.level.Wall" id="Wall41">
+       <object class="model.data.level.Wall" id="Wall25">
         <void property="position">
          <void property="x">
           <int>3</int>
          </void>
          <void property="y">
-          <int>8</int>
+          <int>5</int>
          </void>
         </void>
        </object>
       </void>
       <void index="4">
-       <object class="model.data.level.Wall" id="Wall42">
+       <object class="model.data.level.Wall" id="Wall26">
         <void property="position">
          <void property="x">
           <int>4</int>
          </void>
          <void property="y">
-          <int>8</int>
+          <int>5</int>
          </void>
         </void>
        </object>
       </void>
       <void index="5">
-       <object class="model.data.level.Wall" id="Wall43">
+       <object class="model.data.level.Wall" id="Wall27">
         <void property="position">
          <void property="x">
           <int>5</int>
          </void>
          <void property="y">
-          <int>8</int>
+          <int>5</int>
          </void>
         </void>
        </object>
       </void>
       <void index="6">
-       <object class="model.data.level.Wall" id="Wall44">
+       <object class="model.data.level.Wall" id="Wall28">
         <void property="position">
          <void property="x">
           <int>6</int>
          </void>
          <void property="y">
+          <int>5</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="7">
+       <object class="model.data.level.Wall" id="Wall29">
+        <void property="position">
+         <void property="x">
+          <int>7</int>
+         </void>
+         <void property="y">
+          <int>5</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="8">
+       <object class="model.data.level.Wall" id="Wall30">
+        <void property="position">
+         <void property="x">
           <int>8</int>
+         </void>
+         <void property="y">
+          <int>5</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="9">
+       <object class="model.data.level.Wall" id="Wall31">
+        <void property="position">
+         <void property="x">
+          <int>9</int>
+         </void>
+         <void property="y">
+          <int>5</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="10">
+       <object class="model.data.level.Wall" id="Wall32">
+        <void property="position">
+         <void property="x">
+          <int>10</int>
+         </void>
+         <void property="y">
+          <int>5</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="11">
+       <object class="model.data.level.Wall" id="Wall33">
+        <void property="position">
+         <void property="x">
+          <int>11</int>
+         </void>
+         <void property="y">
+          <int>5</int>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void index="12">
+       <object class="model.data.level.Wall" id="Wall34">
+        <void property="position">
+         <void property="x">
+          <int>12</int>
+         </void>
+         <void property="y">
+          <int>5</int>
          </void>
         </void>
        </object>
       </void>
      </array>
     </void>
-    <void index="9">
-     <array class="model.data.level.LevelObject" length="14"/>
-    </void>
-    <void index="10">
-     <array class="model.data.level.LevelObject" length="14"/>
-    </void>
-    <void index="11">
-     <array class="model.data.level.LevelObject" length="14"/>
-    </void>
-    <void index="12">
-     <array class="model.data.level.LevelObject" length="14"/>
-    </void>
-    <void index="13">
-     <array class="model.data.level.LevelObject" length="14"/>
-    </void>
    </array>
   </void>
   <void property="player1">
-   <object idref="Player0"/>
+   <object class="model.data.level.Player" id="Player1">
+    <void property="position">
+     <void property="x">
+      <int>3</int>
+     </void>
+     <void property="y">
+      <int>1</int>
+     </void>
+    </void>
+   </object>
   </void>
   <void property="playerPos">
-   <object idref="Point0"/>
-  </void>
-  <void property="steps">
-   <int>13</int>
+   <void property="x">
+    <int>3</int>
+   </void>
+   <void property="y">
+    <int>1</int>
+   </void>
   </void>
   <void property="width">
    <int>14</int>

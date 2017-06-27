@@ -18,7 +18,7 @@ public class Controller {
 	
 	public Controller()
 	{
-		q = new ArrayBlockingQueue<Command>(20);
+		q = new ArrayBlockingQueue<Command>(100);
 		keepGoing = true;
 	
 	}
@@ -41,6 +41,7 @@ public class Controller {
 					
 						e.printStackTrace();
 					}
+					
 				}
 				
 			}
@@ -59,9 +60,9 @@ public class Controller {
 			try {
 				q.put(c);
 			} catch (InterruptedException e) {
-				
 				e.printStackTrace();
 			}
+			
 	}
 	
 	

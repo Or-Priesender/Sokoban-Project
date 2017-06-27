@@ -15,7 +15,7 @@ public class SaveToDBCommand extends CommonModelViewCommand {
 	@Override
 	public void execute() throws IOException {
 
-		model.saveToDB(params.removeFirst());
+		model.saveSessionToDB(params.removeFirst());
 		
 
 	}

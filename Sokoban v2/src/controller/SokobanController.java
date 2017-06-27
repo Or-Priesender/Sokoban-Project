@@ -9,14 +9,14 @@ import java.util.Observer;
 
 import controller.commands.AlertCommand;
 import controller.commands.Command;
+import controller.commands.DBCommand;
 import controller.commands.DisplayLevelCommand;
 import controller.commands.ExitCommand;
 import controller.commands.FinishedLevelCommand;
 import controller.commands.LoadFileCommand;
-import controller.commands.LoadSessionFromDBCommand;
 import controller.commands.MoveCommand;
 import controller.commands.SaveFileCommand;
-import controller.commands.SaveToDBCommand;
+import controller.commands.SolutionCommand;
 import controller.commands.UpdateTimeCommand;
 import controller.server.MyServer;
 import javafx.application.Platform;
@@ -70,19 +70,10 @@ public class SokobanController implements Observer {
 		String commandKey = params.removeFirst();
 		Command c = commands.get(commandKey);
 		if(c!=null){
-		c.setParams(params);		
+		c.setParams(params);
 		controller.insertCommand(c);
-		
 		//needed to avoid Thread collision(JavaFx)
-		Platform.runLater(new Runnable() {
-			
-			@Override
-			public void run() {
-				steps.set(model.getSteps());
-				
-			}
-		});
-		
+		Platform.runLater(()->steps.set(model.getSteps()));
 		}
 	}
 	
@@ -128,7 +119,6 @@ public class SokobanController implements Observer {
 	protected void initCommands(){
 		
 		try {
-	commands.put("LoadSessionDB", new LoadSessionFromDBCommand(model,view));
 	commands.put("time", new UpdateTimeCommand(model));
 	commands.put("move", new MoveCommand(model));
 	commands.put("display", new DisplayLevelCommand(model,view));
@@ -136,7 +126,8 @@ public class SokobanController implements Observer {
 	commands.put("save", new SaveFileCommand(model));
 	commands.put("finished", new FinishedLevelCommand(view));
 	commands.put("message", new AlertCommand(view));
-	commands.put("saveToDB", new SaveToDBCommand(model,view));
+	commands.put("DB", new DBCommand(model,view));
+	commands.put("getSolution", new SolutionCommand(model,view));
 	commands.put("exit", new ExitCommand(model,view,this));
 	
 	} catch (FileNotFoundException e) {

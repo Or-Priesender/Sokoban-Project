@@ -29,6 +29,10 @@ public interface View {
 	
 	public void displaySessionsList(List list);
 	
+	public void displaySolution(String solution);
+	
+	public void displayHint(String solution);
+	
 
 	
 	

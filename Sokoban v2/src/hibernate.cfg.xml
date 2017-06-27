@@ -4,6 +4,7 @@
 
 <hibernate-configuration>
    <session-factory>
+   <property name="connection.pool_size">1</property>
    <property name="hibernate.dialect">
       org.hibernate.dialect.SQLServerDialect
    </property>

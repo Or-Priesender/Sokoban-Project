@@ -1,36 +1,19 @@
 package model.data.database;
 
 import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import javafx.beans.property.IntegerPropertyBase;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import model.data.level.Level;
 
-
-
-
-@Entity
-@Table(name="GameSessions")
 public class GameSession implements Serializable{
-	@Id
-	@GeneratedValue
+	
 	private int sessionId;
 	private int userId;
 	private String username;
 	private String levelName;
 	private int steps;
 	private int time;
+	
 	public GameSession(){
 	}
 	

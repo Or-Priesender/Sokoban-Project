@@ -32,6 +32,23 @@ public class LevelObject implements Serializable {
 	public void setWasDestination(boolean wasDestination) {
 		this.wasDestination = wasDestination;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return this.toString().equals(obj.toString());
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(this.getClass().toString());
+		sb.append("(");
+		sb.append(this.getPosition().getX());
+		sb.append(",");
+		sb.append(this.getPosition().getY());
+		sb.append(")");
+		return sb.toString();
+	}
 
 	
 }

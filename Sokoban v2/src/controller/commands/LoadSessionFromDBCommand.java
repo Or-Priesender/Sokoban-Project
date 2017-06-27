@@ -17,7 +17,7 @@ public class LoadSessionFromDBCommand extends CommonModelViewCommand {
 	@Override
 	public void execute() throws IOException {
 		
-			List<GameSession> list = model.loadSessionFromDB();
+			List<GameSession> list = model.loadLevelSessionFromDB(model.getLevel().getLevelName());
 			if(list != null)
 				view.displaySessionsList(list);
 

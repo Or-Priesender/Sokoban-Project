@@ -22,6 +22,11 @@ public abstract class CommonModelViewCommand implements Command {
 		this.params = params;
 	}
 	
+	@Override
+	public String toString() {
+		String s = "" + this.getClass() + " " + params.toString();
+		return s;
+	}
 	
 	
 	

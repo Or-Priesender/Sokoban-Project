@@ -2,14 +2,8 @@ package model.data.database;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
 public class User implements Serializable{
 	
-	@Id
-	@GeneratedValue
 	private int userId;
 	private String username;
 	

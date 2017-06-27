@@ -185,6 +185,17 @@ public class ClientHandler extends Observable implements View{
 		
 	}
 
+	@Override
+	public void displaySolution(String solution) {
+		//TODO: client handler display solution
+	}
+
+	@Override
+	public void displayHint(String solution) {
+		// TODO: client handler display hint
+		
+	}
+
 	
 	
 

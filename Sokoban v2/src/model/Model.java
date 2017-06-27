@@ -29,8 +29,10 @@ public interface Model {
 	public int getSteps();
 	public int getTime();
 	public void updateTime(int seconds);
-	public void saveToDB(String username);
-	public List loadSessionFromDB();
+	public void saveSessionToDB(String username);
+	public List loadLevelSessionFromDB(String levelName);
+	public List loadUserSessionFromDB(String username);
+	public String requestSolution();
 	
 	
 }

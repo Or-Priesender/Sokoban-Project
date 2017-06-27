@@ -1,6 +1,8 @@
 package view;
 
+import java.awt.AWTException;
 import java.awt.Desktop;
+import java.awt.Robot;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,9 +16,9 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
+import java.util.Observer;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -47,16 +49,19 @@ import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import model.data.database.GameSession;
 import model.data.level.LevelObject;
+import shared.SolutionDecoder;
 
 /*
  * This class is the GUI's controller, it gets all data from an XML file outside the code.
  */
 
-public class MainWindowController extends Observable implements View,Initializable{
+public class MainWindowController extends Observable implements View,Initializable,Observer{
 	
+	ScoreBoardController scoreBoard;
 	
 	@FXML
 	GUILevelDisplayer levelDisplayer;
@@ -106,69 +111,85 @@ public class MainWindowController extends Observable implements View,Initializab
 			@Override
 			public void handle(KeyEvent event) {
 				
-				List<String> params=new LinkedList<String>();
-				
 			if(gameInProgress){	
 				//checks according to whatever controls you set up
 				if(currentDef.getCommand(event.getCode())==KeyCode.UP)
 				{
-					if(firstMove){
-						timeline.playFromStart();
-						firstMove = false;
-					}
-					levelDisplayer.setPlayerFileName(levelDisplayer.getPlayerUpFileName());
-					params.add("move");
-					params.add("up");
-					setChanged();
-					notifyObservers(params);
-					
+					move("up");
 				}
 				else if(currentDef.getCommand(event.getCode())==KeyCode.DOWN)
 				{
-					if(firstMove){
-						timeline.playFromStart();
-						firstMove = false;
-					}
-					
-					levelDisplayer.setPlayerFileName(levelDisplayer.getPlayerDownFileName());
-					params.add("move");
-					params.add("down");
-					setChanged();
-					notifyObservers(params);
+					move("down");
 				}
 				else if(currentDef.getCommand(event.getCode())==KeyCode.RIGHT)
 				{
-					if(firstMove){
-						timeline.playFromStart();
-						firstMove = false;
-					}
-					
-					levelDisplayer.setPlayerFileName(levelDisplayer.getPlayerRightFileName());
-					params.add("move");
-					params.add("right");
-					setChanged();
-					notifyObservers(params);
+					move("right");
 				}
 				else if(currentDef.getCommand(event.getCode())==KeyCode.LEFT)
 				{
-					if(firstMove){
-						timeline.playFromStart();
-						firstMove = false;
-					}
-					
-					levelDisplayer.setPlayerFileName(levelDisplayer.getPlayerLeftFileName());
-					params.add("move");
-					params.add("left");
-					setChanged();
-					notifyObservers(params);
-					
+					move("left");
 				}
 				
 					event.consume();
 				
 			}
 			}
+
+			
 		});
+	}
+	
+	private void move(String direction) {
+		LinkedList<String> params = new LinkedList<>();
+		if(firstMove){
+			timeline.playFromStart();
+			firstMove = false;
+		}
+		switch(direction){
+		case "up":
+			levelDisplayer.setPlayerFileName(levelDisplayer.getPlayerUpFileName());
+			break;
+		case "down":
+			levelDisplayer.setPlayerFileName(levelDisplayer.getPlayerDownFileName());
+			break;
+		case "left":
+			levelDisplayer.setPlayerFileName(levelDisplayer.getPlayerLeftFileName());
+			break;
+		case "right":
+			levelDisplayer.setPlayerFileName(levelDisplayer.getPlayerRightFileName());
+			break;
+			default:break;
+			
+		}
+		params.add("move");
+		params.add(direction);
+		setChanged();
+		notifyObservers(params);
+		
+	}
+	
+	public void requestSolution(){
+		
+		if(levelDisplayer.getLevelData() == null)
+			return;
+		
+		List<String> params = new LinkedList<>();
+		params.add("getSolution");
+		params.add("solution");
+		setChanged();
+		notifyObservers(params);
+	}
+	
+	public void requestHint(){
+		
+		if(levelDisplayer.getLevelData()==null)
+			return;
+		
+		List<String> params = new LinkedList<>();
+		params.add("getSolution");
+		params.add("hint");
+		setChanged();
+		notifyObservers(params);
 	}
 	
 	//change controls to already prepared layouts or a custom layout.
@@ -406,7 +427,7 @@ public class MainWindowController extends Observable implements View,Initializab
 		try {
 			Desktop.getDesktop().browse(new URI("www.google.com"));
 		} catch (IOException | URISyntaxException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -473,25 +494,36 @@ public class MainWindowController extends Observable implements View,Initializab
 	public void getCurrentLevelSession(){
 		LinkedList<String> params = new LinkedList<String>();
 		
-		params.add("LoadSessionDB");
+		params.add("DB");
+		params.add("loadCurrentLevelSession");
 		setChanged();
 		notifyObservers(params);
 	}
 	
 	@Override
-	public void displaySessionsList(List list) {
-		//TODO add display for table !! 
+	public void displaySessionsList(List list) { 
 			if(list == null){
-			displayAlert("Error", "No Data To Show");
+				Platform.runLater(new Runnable() {
+					
+					@Override
+					public void run() {
+						displayAlert("Error", "No Data To Show");
+						
+					}
+				});
+			
 			return;
-		}		
+			}		
 		
 		try{
-			
+			if(scoreBoard!=null){
+				scoreBoard.setTable(list); return;
+				}
 			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("boot/ScoreBoard.fxml"));
-			Scene scene = new Scene(loader.load(),600,400);
-			ScoreBoardController score = loader.getController();
-			score.setTable(list);
+			Scene scene = new Scene(loader.load(),800,400);
+			scoreBoard = loader.getController();
+			scoreBoard.setTable(list);
+			scoreBoard.addObserver(this);
 			Platform.runLater(new Runnable() {
 				
 				@Override
@@ -499,22 +531,20 @@ public class MainWindowController extends Observable implements View,Initializab
 					Stage stage = new Stage();
 					stage.setTitle("Score Board");
 					stage.setScene(scene);
+					stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+						public void handle(WindowEvent event) {
+							if(event.getEventType() == WindowEvent.WINDOW_CLOSE_REQUEST)
+								scoreBoard=null;
+						};
+					});
 					stage.show();
 				}
 			});
-			
-			
-			
 			} catch(IOException e){
 				e.printStackTrace();
 			}
-			
-		
-		
-		
+	
 	}
-	
-	
 	private void updateTime(){
 		LinkedList<String> params = new LinkedList<String>();
 		params.add("time");
@@ -534,10 +564,11 @@ public class MainWindowController extends Observable implements View,Initializab
 		if(result.isPresent()){
 			
 			LinkedList<String> params = new LinkedList<String>();
-			params.add("saveToDB");
+			params.add("DB");
+			params.add("save");
 			params.add(result.get());
-			params.add(timeLabel.getText());
-			params.add(stepsLabel.getText());
+			//params.add(timeLabel.getText());//used?
+			//params.add(stepsLabel.getText());//used?
 			setChanged();
 			notifyObservers(params);
 		}
@@ -568,6 +599,66 @@ public class MainWindowController extends Observable implements View,Initializab
 		else
 			serverLabel.setText("Off");
 	}
+	//The main controller allows other windows to update the project's controller
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		LinkedList<String> params = (LinkedList<String>) arg1;
+		setChanged();
+		notifyObservers(params);
+	}
+
+	@Override
+	public void displaySolution(String solution) {
+		List<String> actions = SolutionDecoder.decompress(solution);
+		new Thread(()->{
+			for(String s : actions){
+				if(s.endsWith("Up")){
+					move("up");
+				}
+				else if(s.endsWith("Down")){
+					move("down");
+				}
+				else if(s.endsWith("Left")){
+					move("left");
+				}
+				else if(s.endsWith("Right")){
+					move("right");
+				}
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+		}).start();
+		
+	}
+
+	@Override
+	public void displayHint(String solution) {
+		List<String> actions = SolutionDecoder.decompress(solution);
+		for(String firstAction : actions){
+			
+				if(firstAction.endsWith("Up")){
+					Platform.runLater(()->displayAlert("HINT", "Move Up !"));
+					break;
+				}
+				if(firstAction.endsWith("Down")){
+					Platform.runLater(()->displayAlert("HINT", "Move Down !"));
+					break;
+				}
+				if(firstAction.endsWith("Left")){
+					Platform.runLater(()->displayAlert("HINT", "Move Left !"));
+					break;
+				}
+				if(firstAction.endsWith("Right")){
+					Platform.runLater(()->displayAlert("HINT", "Move Right !"));
+					break;
+				}
+			}
+			
+		}
+	
 
 	
 	

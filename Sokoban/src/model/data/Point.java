@@ -32,5 +32,12 @@ public class Point implements Serializable {
 		this.y = y;
 	}
 	
+	@Override
+	public String toString() {
+		return ""+x+","+y;
+	}
 	
+	public boolean equals(String obj) {
+		return toString().equals(obj);
+	}
 }

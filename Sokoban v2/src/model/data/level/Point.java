@@ -32,5 +32,20 @@ public class Point implements Serializable {
 		this.y = y;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		Point p = (Point) obj;
+		return (p.getX() == this.getX() && p.getY() == this.getY());
+	}
+	
+	@Override
+	public String toString() {
+	
+		return ""+y+","+x;
+	}
+	@Override
+	public int hashCode() {
+		 return Integer.hashCode(y)+Integer.hashCode(x);
+	}
 	
 }

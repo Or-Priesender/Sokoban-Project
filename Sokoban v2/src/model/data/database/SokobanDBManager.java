@@ -1,64 +1,40 @@
 package model.data.database;
 
-import java.util.Iterator;
+
 import java.util.List;
-import java.util.Set;
-
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
-
 import model.data.level.Level;
 
 
-public class SokobanDBManager implements DataBaseManager {
-
-	Session session;
-	SessionFactory factory;
-	Transaction transaction;
+public class SokobanDBManager extends CommonDBManager {
 	
-
 	public SokobanDBManager(){
 		factory = new Configuration().configure().buildSessionFactory();
 		transaction = null;
 		
 	}
-	@Override//doesnt work
-	public boolean userExists(String username) {
-		boolean calledFromManager = false;
-		boolean result = false;
-		if(!session.isOpen() && !transaction.isActive()){
+	
+	@Override
+	public List getGameSessionTableForLevel(String levelName) {
+		
 		session = factory.openSession();
 		transaction = session.beginTransaction();
-		calledFromManager = true;
-		}
 		
-		User u = session.get(User.class, username);
-		if(u != null)
-			result = true;
-		else
-			result = false;
-		if(calledFromManager)
-			return result;
-		else{
-			session.close();
-			return result;
-		}
+		List table = (List) session.createQuery("FROM GameSession g WHERE g.levelName LIKE '" + levelName+"' ORDER BY g.steps,g.time DESC").list();
+		session.close();
+		return table;
 		
 	}
 	
 	@Override
-	public List getGameSessionTableForLevel(Level lvl) {
-		
+	public List getGameSessionTableForUser(String username) {
 		session = factory.openSession();
 		transaction = session.beginTransaction();
 		
-		List table = session.createQuery("FROM GameSession g").list();//TODO how to add with level name ??!
+		List table = session.createQuery("FROM GameSession g WHERE g.username='" +username + "' ORDER BY g.steps,g.time,g.levelName DESC").list();
+		session.close();
 		return table;
-		
 	}
 
 	@Override
@@ -131,10 +107,17 @@ public class SokobanDBManager implements DataBaseManager {
 	}
 	@Override
 	public void closeDB() {
-		
+		if(session != null && session.isConnected())
+			session.close();
 		factory.close();
 		
 		
+	}
+
+	@Override
+	public String getSolution(Level lvl) {
+		// TODO //GET SOLUTION SOMEHOW
+		return null;
 	}
 	
 	
