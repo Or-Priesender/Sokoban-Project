@@ -6,20 +6,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
+
 
 public class Level implements Serializable {
 
 	private LevelObject[][] map;
 	private boolean firstMove=true;
 	private int difficulty;
-	@Column(name = "time")
 	private int time;
-	@Column(name = "steps")
 	private int steps;
-	@Id
-	@Column(name = "level_name")
 	private String levelName;
 	private int width;
 	private int height;

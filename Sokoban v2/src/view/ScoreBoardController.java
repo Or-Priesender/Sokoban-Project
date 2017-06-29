@@ -32,7 +32,7 @@ public class ScoreBoardController extends Observable implements Initializable {
 	TableColumn<GameSession,String> usernameCol,levelNameCol;
 	
 	@FXML
-	TextField userText,levelText;
+	private TextField userText,levelText;
 	
 	ObservableList<GameSession> list;
 	
@@ -55,43 +55,41 @@ public class ScoreBoardController extends Observable implements Initializable {
 		timeCol.setCellValueFactory(timeFac);
 		
 		
-		
-//		levelText.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//
-//			@Override
-//			public void handle(KeyEvent event) {
-//				if(event.getCode() == KeyCode.ENTER){
-//					String searchLine = levelText.getText();
-//					LinkedList<String> params = new LinkedList<String>();
-//					System.out.println(searchLine);
-//					params.add("DB");
-//					params.add("loadLevelSession");
-//					params.add(searchLine);
-//					setChanged();
-//					notifyObservers(params);
-//					
-//				}
-//				
-//			}
-//		});
-//		userText.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//
-//			@Override
-//			public void handle(KeyEvent event) {
-//				if(event.getCode() == KeyCode.ENTER){
-//					String searchLine = userText.getText();
-//					LinkedList<String> params = new LinkedList<String>();
-//					params.add("DB");
-//					params.add("loadUserSession");
-//					params.add(searchLine);
-//					setChanged();
-//					notifyObservers(params);
-//				}
-//				
-//			}
-//			
-//			
-//		});
+		levelText.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				if(event.getCode() == KeyCode.ENTER){
+					String searchLine = levelText.getText();
+					LinkedList<String> params = new LinkedList<String>();
+					params.add("DB");
+					params.add("loadLevelSession");
+					params.add(searchLine);
+					setChanged();
+					notifyObservers(params);
+					
+				}
+				
+			}
+		});
+		userText.setOnKeyPressed(new EventHandler<KeyEvent>() {
+
+			@Override
+			public void handle(KeyEvent event) {
+				if(event.getCode() == KeyCode.ENTER){
+					String searchLine = userText.getText();
+					LinkedList<String> params = new LinkedList<String>();
+					params.add("DB");
+					params.add("loadUserSession");
+					params.add(searchLine);
+					setChanged();
+					notifyObservers(params);
+				}
+				
+			}
+			
+			
+		});
 	}
 	
 	

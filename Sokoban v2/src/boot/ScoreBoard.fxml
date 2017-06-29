@@ -16,17 +16,7 @@
       
    </top>
    <left>
-      <VBox prefHeight="425.0" prefWidth="81.0" spacing="5.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Something" />
-            <Button layoutX="10.0" layoutY="70.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Something" />
-             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Something" />
-            
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-      </VBox>
+     
    </left>
    <center>
       
@@ -55,13 +45,13 @@
                </HBox.margin>
             </Label>
             <Label id="searchUserLabel" text="Search User" />
-            <TextField id="userText">
+            <TextField fx:id="userText">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </TextField>
             <Label id="searchLevelLabel" layoutX="10.0" layoutY="10.0" text="Search Level" />
-            <TextField id="levelText" layoutX="38.0" layoutY="10.0" />
+            <TextField fx:id="levelText" layoutX="38.0" layoutY="10.0" />
          </children>
          <padding>
             <Insets top="10.0" />
