@@ -2,6 +2,11 @@ package model.data.level;
 
 import model.data.files.Createable;
 
+/**
+ * Creates a player level object
+ * @author Or Priesender
+ *
+ */
 public class PlayerCreator implements Createable {
 
 	@Override

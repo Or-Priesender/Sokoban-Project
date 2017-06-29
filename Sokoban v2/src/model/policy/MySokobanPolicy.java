@@ -7,10 +7,11 @@ import model.data.level.LevelObject;
 import model.data.level.Point;
 import model.data.level.Wall;
 
-/*
- * This class checks if it is possible to move in the desired direction according to Sokoban classic rules.
+/**
+ * Implementation of the SokobanPolicy interface, responsible for checking if a move is legal according to policy.
+ * @author Or Priesender
+ *
  */
-
 public class MySokobanPolicy implements SokobanPolicy {
 
 	

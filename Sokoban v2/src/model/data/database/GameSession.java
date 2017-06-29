@@ -5,6 +5,11 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import model.data.level.Level;
 
+/**
+ * This bean defines a game session for a user and a level.
+ * @author Or Priesender
+ *
+ */
 public class GameSession implements Serializable{
 	
 	private int sessionId;

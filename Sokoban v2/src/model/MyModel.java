@@ -1,14 +1,9 @@
 package model;
 
-import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,10 +22,11 @@ import model.data.level.Point;
 import model.policy.MySokobanPolicy;
 import model.policy.SokobanPolicy;
 
-/*
- * This class groups the whole Model layer into one usable class.
+/**
+ * The model's layer facade class, defines all needed sokoban data behavior and calculations in one place.
+ * @author Or Priesender
+ *
  */
-
 public class MyModel extends Observable implements Model {
 
 	protected Level lvl;

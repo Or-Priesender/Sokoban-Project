@@ -6,8 +6,10 @@ import java.io.ObjectInputStream;
 
 import model.data.level.Level;
 
-/*
- * Loads an object file with any InputStream
+/**
+ * Loads a level using the object input stream with any InputStream given.
+ * @author Or Priesender
+ *
  */
 
 public class MyObjectLevelLoader implements LevelLoader {

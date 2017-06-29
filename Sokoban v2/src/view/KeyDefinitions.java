@@ -6,10 +6,13 @@ import java.util.HashMap;
 
 import javafx.scene.input.KeyCode;
 
-/*
- * This class converts any key from an XML file to the arrow keys.
- */
 
+/**
+ * Reads an XML file with 4 key codes (directions) and mapps them to the regular arrow keys.
+ * This is used for when you set custom controls with the KeySetter class.
+ * @author Or Priesender
+ *
+ */
 public class KeyDefinitions {
 	
 	private HashMap<KeyCode,KeyCode> definitions;

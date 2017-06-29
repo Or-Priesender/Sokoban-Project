@@ -5,6 +5,11 @@ import java.io.IOException;
 import model.Model;
 import view.View;
 
+/**
+ * This command requests a solution from the model, the specific way the model can vary depending implementation.
+ * @author Or Priesender
+ *
+ */
 public class SolutionCommand extends CommonModelViewCommand{
 
 	public SolutionCommand(Model model,View view){

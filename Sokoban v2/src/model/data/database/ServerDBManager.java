@@ -11,6 +11,11 @@ import java.util.List;
 
 import model.data.level.Level;
 
+/**
+ * This database manager connects to a server to get required data.
+ * @author Or Priesender
+ *
+ */
 public class ServerDBManager implements DataBaseManager {
 
 	Socket sock;
@@ -24,8 +29,13 @@ public class ServerDBManager implements DataBaseManager {
 		initIO();
 	}
 	
+	/**
+	 * Get score board data for a specific level
+	 */
 	@Override
 	public List getGameSessionTableForLevel(String levelName) {
+		if(levelName.isEmpty())
+			return null;
 		writer.println("LevelSessionTable " + levelName);
 		writer.flush();
 		List table = null;
@@ -37,8 +47,13 @@ public class ServerDBManager implements DataBaseManager {
 		return table;
 	}
 
+	/**
+	 * Get score board data for specific user name.
+	 */
 	@Override
 	public List getGameSessionTableForUser(String username) {
+		if(username.isEmpty())
+			return null;
 		writer.println("UserSessionTable " + username);
 		writer.flush();
 		List table = null;
@@ -51,6 +66,9 @@ public class ServerDBManager implements DataBaseManager {
 		return table;
 	}
 
+	/**
+	 * Saves user and level in their tables and creates a level session from them.
+	 */
 	@Override
 	public void saveUserAndLevel(User user, Level lvl) {
 		writer.println("SaveSession");
@@ -66,6 +84,9 @@ public class ServerDBManager implements DataBaseManager {
 
 	}
 
+	/**
+	 * Adds a user to the users table.
+	 */
 	@Override
 	public void addUser(User u) {
 		writer.println("addUser");
@@ -79,6 +100,9 @@ public class ServerDBManager implements DataBaseManager {
 		}
 	}
 
+	/**
+	 * Adds a level to the levels table.
+	 */
 	@Override
 	public void addLevel(Level l) {
 		writer.println("addLevel");
@@ -92,18 +116,27 @@ public class ServerDBManager implements DataBaseManager {
 		
 	}
 
+	/**
+	 * Deletes a user from the users table according to userId.
+	 */
 	@Override
 	public void deleteUser(int userId) {
 		writer.println("deleteUser " + userId);
 		writer.flush();
 	}
 
+	/**
+	 * Deletes a level from the levels table according to level name.
+	 */
 	@Override
 	public void deleteLevel(String levelName) {
 		writer.println("deleteLevel " + levelName);
 		writer.flush();
 	}
 
+	/**
+	 * Close all database resources.
+	 */
 	@Override
 	public void closeDB() {
 		try {
@@ -116,6 +149,9 @@ public class ServerDBManager implements DataBaseManager {
 		}
 	}
 	
+	/**
+	 * Initialize all necessary input and output components to write and read objects and text from the server.
+	 */
 	private void initIO(){
 		try {
 			 this.writer = new PrintWriter(sock.getOutputStream(),true);
@@ -127,6 +163,9 @@ public class ServerDBManager implements DataBaseManager {
 		}
 	}
 
+	/**
+	 * Request a solution from the server.
+	 */
 	@Override
 	public String getSolution(Level lvl) {
 		try {

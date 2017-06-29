@@ -2,6 +2,11 @@ package model.data.level;
 
 import java.io.Serializable;
 
+/**
+ * A non-specific bean that defines a sokoban level object.
+ * @author Or Priesender
+ *
+ */
 public class LevelObject implements Serializable {
 	private static final long serialVersionUID = 1L;
 	protected Point position;

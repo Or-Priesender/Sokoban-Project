@@ -7,9 +7,11 @@ import java.net.Socket;
 import java.util.Observable;
 import view.ClientHandler;
 
-/*
- * This class is a general Server. The server starts on a new thread. You must inject an observed ClientHandler so it will notify
- * the relevant layers of what is requested. For example: the user wants to move the player up, the handler needs to notify the controller.
+/**
+ * This class is a backdoor server which requires an observed client handler. It allows a remote user
+ * to connect and play the game from the command line.
+ * @author Or Priesender
+ *
  */
 
 public class MyServer extends Observable {

@@ -28,8 +28,9 @@ import view.View;
 
 public class SokobanController implements Observer {
 	
-	/*
+	/**
 	 * Controls the model and view layers, and has the ability to run with a server.
+	 * This class uses the non-specific Controller class to execute its received commands.
 	 */
 	
 	private View view;

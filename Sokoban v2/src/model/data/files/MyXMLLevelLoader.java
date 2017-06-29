@@ -7,8 +7,10 @@ import java.io.InputStream;
 
 import model.data.level.Level;
 
-/*
- * Loads an XML file with any InputStream
+/**
+ * Loads a level from an XML file through any InputStream.
+ * @author Or Priesender
+ *
  */
 
 public class MyXMLLevelLoader implements LevelLoader {

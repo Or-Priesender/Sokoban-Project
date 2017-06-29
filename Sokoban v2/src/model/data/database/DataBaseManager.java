@@ -4,6 +4,11 @@ import java.util.List;
 
 import model.data.level.Level;
 
+/**
+ * This interface defines the behavior of a game database manager.
+ * @author Or Priesender
+ *
+ */
 public interface DataBaseManager {
 	
 	public List getGameSessionTableForLevel(String levelName);

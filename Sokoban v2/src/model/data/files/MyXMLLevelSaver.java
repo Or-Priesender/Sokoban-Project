@@ -8,8 +8,10 @@ import model.data.level.Level;
 
 
 
-/*
- * Saves an xml file with any InputStream
+/**
+ * Saves a level to an XML file through any OutputStream.
+ * @author Or Priesender
+ *
  */
 
 public class MyXMLLevelSaver implements LevelSaver {

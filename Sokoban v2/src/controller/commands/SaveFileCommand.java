@@ -11,10 +11,12 @@ import model.data.files.ObjectLevelSaverCreator;
 import model.data.files.TextLevelSaverCreator;
 import model.data.files.XMLLevelSaverCreator;
 
-/*
- * This class saves a level according to it's extension. You can inherit this class and set the HashMap accordingly.
- */
 
+/**
+ * This class saves a level according to it's extension. You can inherit this class and set the HashMap accordingly.
+ * @author Or Priesender
+ *
+ */
 public class SaveFileCommand extends CommonModelCommand {
 
 	protected HashMap<String,LevelSaverCreator> map;

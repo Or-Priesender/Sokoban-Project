@@ -3,7 +3,9 @@ controller
 controller.commands
 controller.server
 model
+model.data.database
 model.data.files
 model.data.level
 model.policy
+shared
 view

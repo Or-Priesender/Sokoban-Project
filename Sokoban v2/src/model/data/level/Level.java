@@ -2,12 +2,15 @@ package model.data.level;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 
-
+/**
+ * This class is the main bean of the game. It defines a sokoban level.
+ * It is also responsible of moving objects around the map.
+ * @author Or Priesender
+ *
+ */
 public class Level implements Serializable {
 
 	private LevelObject[][] map;
@@ -62,17 +65,17 @@ public class Level implements Serializable {
 	@Override
 	public int hashCode() {
 		int hash = levelName.hashCode();
-		
+
 		for (int i = 0; i < map.length; i++) {
-			
+
 			for (int j = 0; j < map[i].length; j++) {
 				if(i>0 || j>0)
 					if(map[i][j]!=null)
 						hash+=(map[i][j].hashCode())%(i+j);
-				
+
 			}
 		}
-		
+
 		return hash;
 
 	}
@@ -250,9 +253,9 @@ public class Level implements Serializable {
 		LevelObject[][] newMap = new LevelObject[map.length][];
 
 		for (int i = 0; i < newMap.length; i++) {
-			
+
 			newMap[i] = new LevelObject[map[i].length];
-			
+
 			for (int j = 0; j < map[i].length; j++) {
 				if(map[i][j] instanceof Player){
 					newMap[i][j] = new Player(new Point(i,j));
@@ -272,22 +275,22 @@ public class Level implements Serializable {
 		return newMap;
 	}
 
-	
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		if(map!=null){
-		for (int i = 0; i < map.length; i++) {
-			for (int j = 0; j < map[i].length; j++) {
-				sb.append(map[i][j] + " ");
+			for (int i = 0; i < map.length; i++) {
+				for (int j = 0; j < map[i].length; j++) {
+					sb.append(map[i][j] + " ");
+				}
+				sb.append("\n");
 			}
-			sb.append("\n");
-		}
 		}
 		return sb.toString();
 	}
-	
-	
-	
+
+
+
 
 }

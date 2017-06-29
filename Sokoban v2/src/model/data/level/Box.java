@@ -1,5 +1,10 @@
 package model.data.level;
 
+/**
+ * Bean to define a sokoban box.
+ * @author Or Priesender
+ *
+ */
 public class Box extends LevelObject{
 
 	public Box(Point pos) {

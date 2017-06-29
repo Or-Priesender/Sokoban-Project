@@ -13,7 +13,11 @@ import model.data.level.Level;
 import model.data.level.LevelObject;
 import model.policy.SokobanPolicy;
 
-
+/**
+ * The Model facade interface, defines the model's required behavior.
+ * @author Or Priesender
+ *
+ */
 public interface Model {
 
 	public Level getLevel();

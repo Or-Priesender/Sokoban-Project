@@ -2,6 +2,11 @@ package model.data.database;
 
 import java.io.Serializable;
 
+/**
+ * A bean class that defines a user.
+ * @author Or Priesender
+ *
+ */
 public class User implements Serializable{
 	
 	private int userId;

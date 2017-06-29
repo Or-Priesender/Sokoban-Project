@@ -4,6 +4,11 @@ import java.io.IOException;
 
 import model.Model;
 
+/**
+ * Updates the time it took to complete the level.
+ * @author Or Priesender
+ *
+ */
 public class UpdateTimeCommand extends CommonModelCommand {
 	
 	public UpdateTimeCommand(Model model){

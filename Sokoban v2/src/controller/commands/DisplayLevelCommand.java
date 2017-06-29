@@ -3,9 +3,11 @@ package controller.commands;
 import model.Model;
 import view.View;
 
-/*
+/**
  * This class uses both Model and View and tells the view to display the level that the model holds.
  * This way the View doesn't need to know the information.
+ * @author Or Priesender
+ *
  */
 public class DisplayLevelCommand extends CommonModelViewCommand {
 

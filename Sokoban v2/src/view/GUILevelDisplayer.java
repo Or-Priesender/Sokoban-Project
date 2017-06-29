@@ -14,9 +14,11 @@ import model.data.level.LevelObject;
 import model.data.level.Player;
 import model.data.level.Wall;
 
-/*
+/**
  * This class displays images to the screen using JavaFx's Canvas class.
- * Images are uploaded to the program via XML.
+ * Images are uploaded to the program via FXML.
+ * @author Or Priesender
+ *
  */
 
 public class GUILevelDisplayer extends Canvas {
@@ -29,7 +31,7 @@ public class GUILevelDisplayer extends Canvas {
 	private Image openPage,levelFinished;
 	protected double width,height;
 	
-	
+
 	public GUILevelDisplayer() {
 		
 		wallFileName = new SimpleStringProperty();
@@ -54,7 +56,10 @@ public class GUILevelDisplayer extends Canvas {
 		
 	
 	
-	//displays the level itself
+	/**
+	 * Method used to draw a level according to image path's given in the FXML file.
+	 * @throws FileNotFoundException
+	 */
 	public void redraw() throws FileNotFoundException
 	{
 		
@@ -109,7 +114,9 @@ public class GUILevelDisplayer extends Canvas {
 		
 	}
 	
-	//display stage finished message
+	/**
+	 * Display a stage finished message and image.
+	 */
 	public void displayFinished()
 	{
 		try {
@@ -129,7 +136,9 @@ public class GUILevelDisplayer extends Canvas {
 		}
 	}
 
-	//displays the opening page
+	/**
+	 * Display the open page.
+	 */
 	public void displayOpenPage()
 	{
 		try {
@@ -146,7 +155,11 @@ public class GUILevelDisplayer extends Canvas {
 		}
 	}
 
-	//displays the level using the redraw method, also remembers last level drawn
+	/**
+	 * Saves level and draw it.
+	 * @param levelData level map
+	 * @throws FileNotFoundException
+	 */
 	public void display(LevelObject[][] levelData) throws FileNotFoundException {
 		setLevelData(levelData);
 		redraw();

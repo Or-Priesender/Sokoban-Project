@@ -12,10 +12,14 @@ import model.data.level.Level;
 import model.data.level.LevelObject;
 import model.data.level.LevelObjectFactory;
 import model.data.level.Player;
+import model.data.level.Point;
 import model.data.level.Point2D;
 
-/*
- * Loads a text file with any InputStream
+
+/**
+ * Loads level from a text file from any InputStream.
+ * @author Or Priesender
+ *
  */
 
 public class MyTextLevelLoader implements LevelLoader {
@@ -68,9 +72,9 @@ public class MyTextLevelLoader implements LevelLoader {
 				char[] seperated = line.toCharArray();
 				for(int j=0;j<seperated.length; j++)
 				{
-					if(fac.getObject(seperated[j], new Point2D(i,j)) instanceof Player)
+					if(fac.getObject(seperated[j], new Point(i,j)) instanceof Player)
 					{
-						newLevel.setPlayerPos(new Point2D(i,j));
+						newLevel.setPlayerPos(new Point(i,j));
 						newLevel.setPlayer1((Player)fac.getObject(seperated[j], new Point2D(i,j)));
 					}
 					
@@ -78,7 +82,7 @@ public class MyTextLevelLoader implements LevelLoader {
 						newLevel.setDestinationCounter(newLevel.getDestinationCounter()+1);
 						
 					}
-					map[i][j] = fac.getObject(seperated[j],new Point2D(i,j));
+					map[i][j] = fac.getObject(seperated[j],new Point(i,j));
 					if(map[i][j] instanceof Box) newLevel.addBox((Box)map[i][j]);
 					else if(map[i][j] instanceof Destination) newLevel.addDestination((Destination) map[i][j]);
 			    }

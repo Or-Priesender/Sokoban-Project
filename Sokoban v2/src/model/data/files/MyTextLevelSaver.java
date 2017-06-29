@@ -11,8 +11,10 @@ import model.data.level.LevelObject;
 import model.data.level.Player;
 import model.data.level.Wall;
 
-/*
- * Saves to text file with any OutputStream
+/**
+ * Saves a level to a text file through any OutputStream.
+ * @author Or Priesender
+ *
  */
 public class MyTextLevelSaver implements LevelSaver {
 

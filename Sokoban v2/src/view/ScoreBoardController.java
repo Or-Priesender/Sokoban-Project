@@ -20,6 +20,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.data.database.GameSession;
 
+/**
+ * JavaFX controller class, defines the presentation logic for the score board window. 
+ * @author Or Priesender
+ *
+ */
 public class ScoreBoardController extends Observable implements Initializable {
 	
 	@FXML
@@ -36,7 +41,9 @@ public class ScoreBoardController extends Observable implements Initializable {
 	
 	ObservableList<GameSession> list;
 	
-	
+	/**
+	 * Initializes the table columns and different data members
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -54,7 +61,7 @@ public class ScoreBoardController extends Observable implements Initializable {
 		stepsCol.setCellValueFactory(stepsFac);
 		timeCol.setCellValueFactory(timeFac);
 		
-		
+		//when "Enter" is pressed when writing in the text boxes, a search is made.
 		levelText.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
 			@Override
@@ -92,7 +99,10 @@ public class ScoreBoardController extends Observable implements Initializable {
 		});
 	}
 	
-	
+	/**
+	 * Sets the table with the given data
+	 * @param data
+	 */
 	public void setTable(List<GameSession> data){
 		
 		list = FXCollections.observableArrayList(data);

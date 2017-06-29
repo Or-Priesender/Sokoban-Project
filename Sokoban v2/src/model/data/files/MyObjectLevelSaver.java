@@ -6,8 +6,10 @@ import java.io.OutputStream;
 
 import model.data.level.Level;
 
-/*
- * Saves an object file with any OutputStream
+/**
+ * Saves a level using the object output stream with any OutputStream given.
+ * @author Or Priesender
+ *
  */
 
 public class MyObjectLevelSaver implements LevelSaver {

@@ -5,13 +5,17 @@ import java.io.OutputStream;
 
 import javafx.scene.input.KeyCode;
 
-/*
- * This class sets keys to the game. The default is the arrow keys.
+/**
+ * Writes desired key codes to a XML file, later to be interpreted by the KeyDefinitions class. 
+ * @author Or Priesender
+ *
  */
-
 public class KeySetter {
 	
-	
+	/**
+	 * Sets the default arrow keys to the file.
+	 * @param out
+	 */
 	public void setDefaultKeys(OutputStream out){
 		XMLEncoder encoder = new XMLEncoder(out);
 		
@@ -24,7 +28,14 @@ public class KeySetter {
 		
 	}
 	
-	//get key code and write it to XML so it can be read later by the KeyDefinitions
+	/**
+	 * Sets custom keys to the file.
+	 * @param out OutputStream to use writing to the file.
+	 * @param up desired key to move up
+	 * @param down desired key to move down
+	 * @param right desired key to move right
+	 * @param left desired key to move left
+	 */
 	public void setCustomKeys(OutputStream out,KeyCode up,KeyCode down, KeyCode right,KeyCode left){
 		XMLEncoder encoder = new XMLEncoder(out);
 		

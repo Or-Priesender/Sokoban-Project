@@ -1,5 +1,10 @@
 package model.data.level;
 
+/**
+ * Bean to define a sokoban Destination.
+ * @author Or Priesender
+ *
+ */
 public class Destination extends LevelObject {
 	
 	public Destination()

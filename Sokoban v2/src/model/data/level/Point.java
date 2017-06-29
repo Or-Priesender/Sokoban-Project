@@ -2,6 +2,11 @@ package model.data.level;
 
 import java.io.Serializable;
 
+/**
+ * This class is used to define a level object's position on the map.
+ * @author Or Priesender
+ *
+ */
 public class Point implements Serializable {
 	protected int x;
 	protected int y;

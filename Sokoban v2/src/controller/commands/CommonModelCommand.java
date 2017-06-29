@@ -8,6 +8,11 @@ import java.util.LinkedList;
 
 import model.Model;
 
+/**
+ * This abstract class is used for Model-only related commands.
+ * @author Or Priesender
+ *
+ */
 public abstract class CommonModelCommand implements Command {
 
 	protected LinkedList<String> params;

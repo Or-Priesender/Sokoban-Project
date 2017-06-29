@@ -5,6 +5,11 @@ import java.util.List;
 import javafx.beans.property.IntegerProperty;
 import model.data.level.LevelObject;
 
+/**
+ * Facade interface for the view layer, defines all required behavior of the presentation and presentation logic.
+ * @author Or Priesender
+ *
+ */
 public interface View {
 	
 	

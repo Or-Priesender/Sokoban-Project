@@ -1,5 +1,10 @@
 package model.data.level;
 
+/**
+ * This bean defines a sokoban level wall.
+ * @author Or Priesender
+ *
+ */
 public class Wall extends LevelObject {
 
 	

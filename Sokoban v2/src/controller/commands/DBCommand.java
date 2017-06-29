@@ -8,6 +8,11 @@ import model.data.database.GameSession;
 import model.data.level.Level;
 import view.View;
 
+/**
+ * Access the database via the Model layer.
+ * @author Or Priesender
+ *
+ */
 public class DBCommand extends CommonModelViewCommand {
 	
 	

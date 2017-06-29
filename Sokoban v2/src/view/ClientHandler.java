@@ -12,9 +12,10 @@ import javafx.beans.property.IntegerProperty;
 import model.data.database.GameSession;
 import model.data.level.LevelObject;
 
-/*
- * This class gets commands from the client and pass it forward to the controller.
- * It can use custom output and input.
+/**
+ * This ClientHandler reads commands from the client and passes it to the SokobanController class for execution.
+ * @author Or Priesender
+ *
  */
 
 public class ClientHandler extends Observable implements View{

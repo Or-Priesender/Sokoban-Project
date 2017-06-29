@@ -3,6 +3,11 @@ package shared;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A util for de-compressing a solution string to a full readable solution. compression is made with SolutionEncoder class.
+ * @author Or Priesender
+ *
+ */
 public class SolutionDecoder {
 
 	public static List<String> decompress(String compressed){

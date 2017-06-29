@@ -2,6 +2,11 @@ package shared;
 
 import java.util.List;
 
+/**
+ * A util for compressing a solution string to a much shorter string. can be de-compressed by the SolutionDecoder class.
+ * @author Or Priesender
+ *
+ */
 public class SolutionEncoder {
 
 	List<String> fullSolution;
